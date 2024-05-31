@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+
+
+.container {
+    margin: 40px auto;
+}
+
+#price .middle {
+    position: relative;
+    width: 100%;
+    margin-top: 25px;
+}
+
+.multi-range-slider {
+    position: relative;
+    z-index: 1;
+    height: 5px;
+    margin: 0 15px;
+}
+
+.slider > .track {
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border-radius: 5px;
+    background-color: #ddd;
+}
+
+.slider > .range {
+    position: absolute;
+    z-index: 2;
+    left: 25%;
+    right: 25%;
+    top: 0;
+    bottom: 0;
+    border-radius: 5px;
+    background-color: #36a31b;
+}
+
+.slider > .thumb {
+    position: absolute;
+    top: 2px;
+    z-index: 3;
+    width: 20px;
+    height: 20px;
+    background-color: #36a31b;
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(63, 204, 75, 0.705);
+    transition: box-shadow .3s ease-in-out;
+}
+
+.slider > .thumb::after {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    left: 28%;
+    top: 30%;
+    border-radius: 50%;
+    content: '';
+    background-color: #fff;
+}
+
+.slider > .thumb.left {
+    left: 25%;
+    transform: translate(-15px, -10px);
+}
+
+.slider > .thumb.right {
+    right: 25%;
+    transform: translate(15px, -10px);
+}
+
+.slider > .thumb.hover {
+    box-shadow: 0 0 0 10px rgba(125, 230, 134, 0.507);
+}
+
+.slider > .thumb.active {
+    box-shadow: 0 0 0 10px rgba(63, 204, 75, 0.623);
+}
+
+input[type=range] {
+    position: absolute;
+    pointer-events: none;
+    -webkit-appearance: none;
+    z-index: 2;
+    height: 10px;
+    width: 100%;
+    opacity: 0;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    pointer-events: all;
+    width: 30px;
+    height: 30px;
+    border-radius: 0;
+    border: 0 none;
+    background-color: red;
+    -webkit-appearance: none;
+}
+
+button#filter-btn {
+    height: inherit;
+    background-color: #ff935d;
+    color: #fff;
+    font-size: 0.82rem;
+    padding-left: 40px;
+    padding-right: 40px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border: none;
+}
+
+button#filter-btn:focus {
+    box-shadow: none;
+}
+
+.font-weight-bold {
+    font-weight: 700;
+}

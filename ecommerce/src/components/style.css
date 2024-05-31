@@ -1,0 +1,391 @@
+.thumbnail {
+    transition: opacity 0.2s; /* Smooth transition effect */
+  }
+  
+  .thumbnail:hover {
+    opacity: 0.7; /* Reduced opacity on hover */
+  }
+  body {
+    font-family: 'Jost';
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Jost', sans-serif;
+  }
+.fa{
+  color :black !important
+}
+
+  .footer-payment {
+    height: 1.5rem;
+    width: auto;
+}
+
+.card2,
+.card1:hover {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+ 
+}
+
+.fa-white
+{
+  color: #fff !important;
+}
+.card1 .logos {
+  transition: transform 0.2s ease; /* Add transition effect for translation */
+  /* background-color: antiquewhite; */
+}
+
+.card1:hover .logos {
+  transform: translateY(-26px); /* Translate the container along the positive x-axis */
+  /* background-color:rgb(128, 128, 128,0.5) */
+
+}
+.fa-visible
+{
+  opacity: 1 !important;
+}
+.card1 .fa:hover
+{
+  font-size: 30px;
+}
+
+
+    
+    .card1 .fa {
+      
+      font-size: 24px; /* Increase the font size */
+      margin: 0 8px; /* Adjust margin to maintain equal distance */
+      transition: opacity 0.3s ease; /* Add transition effect */
+      opacity:0; /* Start with opacity 0 */
+    }
+    
+    .card1:hover .fa {
+      opacity: 1; /* Change opacity to 1 on hover */
+      
+    }
+   
+    .inner:active .fa {
+      color: red !important; /* Change to desired color */
+      opacity: 0.5; /* Change to desired opacity */
+    }
+    
+  .card1 .card-img-top  {
+    transition: transform 0.3s ease; /* Add transition effect */
+  }
+  
+  .card1:hover .card-img-top {
+    transform: scale(0.9); /* Increase scale on hover (1.1 is 110% of original size) */
+  }
+  .card-bg-img {
+    transition: transform 0.3s ease;
+}
+.card-bg-img {
+  width: 100%; /* Ensure the image width covers the entire card */
+  height: 100%; /* Ensure the image height covers the entire card */
+  object-fit: cover; /* Ensure the image covers the entire space without distortion */
+}
+
+/* Define the scale of the image when hovered */
+.card-bg-img:hover {
+    transform: scale(1.1); /* Increase the size by 10% when hovered */
+}
+
+  .thumbnail-container::-webkit-scrollbar {
+    display: none;
+  }
+  .badge
+  {
+    background-color: crimson !important;
+
+  }
+
+  html, body {
+    height: 100%;
+}
+.item-count {
+  font-weight: 400; /* Or any other value to reduce the boldness */
+}
+/* CSS */
+/* CSS */
+
+.fa-even
+{
+  color:aliceblue !important;
+}
+.fa-sign-in ,.fa-user
+{
+  font-size: 23px;
+}
+
+
+
+
+.cat{
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+    transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+padding: 14px 80px 18px 36px;
+cursor: pointer;
+}
+
+.cat:hover{
+  transform: scale(1.05);
+box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+}
+.bgdark :hover{
+  background-color: #000000;
+  opacity: 60%;
+}
+/* Add this CSS to your style.css file */
+.cart-item-img {
+  max-width: 100px; /* Adjust the maximum width of the image as needed */
+  height: auto; /* Maintain the aspect ratio of the image */
+}
+.mt-n13 {
+  margin-top: -9rem !important;
+}
+.mb-10 {
+  margin-bottom: 4rem !important;
+}
+.py-12 {
+  padding-bottom: 6rem !important;
+  padding-top: 6rem !important;
+}
+@media (min-width: 768px) {
+  .mb-md-0 {
+      margin-bottom: 0 !important;
+  }
+}
+.mb-7 {
+  margin-bottom: 2rem !important;
+}
+.py-12 {
+  padding-bottom: 5rem !important;
+  padding-top: 5rem !important;
+}
+
+
+
+.category-card {
+  display: flex;
+}
+
+.card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Adjust overlay color and opacity */
+}
+
+.card-body {
+  position: relative; /* Ensure text is positioned relative to the card */
+  z-index: 1; /* Ensure text is above the overlay */
+}
+
+
+/* In your CSS file (e.g., App.css or a dedicated CSS file for this component) */
+.translucent-bg {
+  /* background-color: rgba(0, 0, 0, 0.5); Adjust the color and opacity as needed */
+}
+.nbtn
+  {
+   
+    border:none;
+    border-radius: 0%;
+  }
+/* Media query for smaller screens */
+.btn-items:focus {
+  outline: none;
+}
+
+@media (max-width: 768px) {
+  .translucent-bg {
+    background-color: rgba(219, 225, 226, 0.5); /* Adjust the opacity for smaller screens */
+    color: #444242!important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .res
+  {
+    margin-top: 40px;
+  }
+ 
+  
+}
+@media (max-width: 550px) {
+  
+  .res
+  {
+    margin-top: 60px !important;
+  }
+  
+ 
+  
+}
+@media (max-width: 374px) {
+  .icon-small {
+    font-size: 1rem;
+  }
+}
+
+/* In your CSS file (e.g., App.css or a dedicated CSS file for this component) */
+.center-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh; /* Full height of the viewport */
+  text-align: center; /* Center text inside the div */
+}
+
+@media (max-width: 767px) {
+  .centering{
+    text-align: center;
+  }
+}
+
+/* Size options container */
+.size-options {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+/* Individual size option */
+.size-option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* Selected size option */
+.size-option.selected {
+  background-color: #000;
+  color: #fff;
+  border-color: #000;
+}
+
+/* Hover effect for size option */
+.size-option:hover {
+  border-color: #000;
+}
+
+/* Hidden input */
+.size-option input[type="radio"] {
+  display: none;
+}
+
+
+
+#price {
+  height: 45px;
+}
+
+#price .middle {
+  position: relative;
+  width: 100%;
+  margin-top: 25px;
+}
+
+#price .slider {
+  position: relative;
+  z-index: 1;
+  height: 5px;
+  margin: 0 15px;
+}
+
+#price .slider > .track {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 5px;
+  background-color: #ddd;
+}
+
+#price .slider > .range {
+  position: absolute;
+  z-index: 2;
+  left: 25%;
+  right: 25%;
+  top: 0;
+  bottom: 0;
+  border-radius: 5px;
+  background-color: #36a31b;
+}
+
+#price .slider > .thumb {
+  position: absolute;
+  top: 2px;
+  z-index: 3;
+  width: 20px;
+  height: 20px;
+  background-color: #36a31b;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 rgba(63, 204, 75, 0.705);
+  transition: box-shadow .3s ease-in-out;
+}
+
+#price .slider > .thumb::after {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  left: 28%;
+  top: 30%;
+  border-radius: 50%;
+  content: '';
+  background-color: #fff;
+}
+
+#price .slider > .thumb.left {
+  left: 25%;
+  transform: translate(-15px, -10px);
+}
+
+#price .slider > .thumb.right {
+  right: 25%;
+  transform: translate(15px, -10px);
+}
+
+#price .slider > .thumb.hover {
+  box-shadow: 0 0 0 10px rgba(125, 230, 134, 0.507);
+}
+
+#price .slider > .thumb.active {
+  box-shadow: 0 0 0 10px rgba(63, 204, 75, 0.623);
+}
+
+input[type=range] {
+  position: absolute;
+  pointer-events: none;
+  -webkit-appearance: none;
+  z-index: 2;
+  height: 10px;
+  width: 100%;
+  opacity: 0;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  pointer-events: all;
+  width: 30px;
+  height: 30px;
+  border-radius: 0;
+  border: 0 none;
+  background-color: red;
+  -webkit-appearance: none;
+}
