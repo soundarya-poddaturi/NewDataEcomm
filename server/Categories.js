@@ -2,7 +2,6 @@ const Category=[
     
     "Men",
     "Women",
-    "Jewellery",
-    "Electronics"
+    "Accessories"
 ]
 module.exports = Category;

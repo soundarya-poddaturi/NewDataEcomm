@@ -1,87 +1,95 @@
 const Data = [
     {
         "id": 1,
-        "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+        "title": "XJARVIS Black UV Tan Sunblock protection with Thumb Hole Arm Sleeves, Outdoor Indoor Use Unisex Arm Sleeve for Men Women Children with Compression & Cooling Effect",
         "price": 109.95,
-        "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-        "category": "Electronics",
-        "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+        "description": "COOLING & SUN PROTECTION: Ultimate cooling & sun protection to block out over 98% of harmful UV rays, the Xjarvis Outdoors' Cooling Sun Sleeves are more than your average sun arm sleeves for men & women.The sleeves are made from Polyamide and spandex, which is breathable. It's flexible stretchable, and adjustable. You can wear the pair with ease and adjust them to fit the shape of your hand adjust as per your arm shape. Arm sleeve men & women bike riding, cricket hand sleeves, hand sleeves for boys.",
+        "category": "Accessories",
+        "image": ["/images/acc001.jpg","/images/acc002.jpg"],
         "rating": {
             "rate": 3.9,
             "count": 120
         },
-        "brand": "Fjallraven",
+        "brand": "XJARVIS",
         "discount_percentage": 0,
         "delivery_time": "2-3 business days",
         "subcategories": {
-            "fabric_type": "Nylon",
-            "fit": "Regular",
-            "colors": ["black", "gray"],
+            "fabric_type": "Polyester",
+            // "fit": "Regular",
+            // "colors": ["Black", "gray"],
             
         }
     },
     {
         "id": 2,
-        "title": "Mens Casual Premium Slim Fit T-Shirts ",
+        "title": "Casual Shirt for Men|| Shirt for Men|| Men Stylish Shirt (Rib-Shirt)",
         "price": 22.3,
         "description": "Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.",
         "category": "Men",
-        "image": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
+        "image": ["/images/m000.jpg","/images/m001.jpg","/images/m002.jpg","/images/m003.jpg"],
         "rating": {
             "rate": 4.1,
             "count": 259
         },
-        "brand": "Mango",
+        "brand": "Lymio",
         "discount_percentage": 51,
         "delivery_time": "1-2 business days",
         "subcategories": {
-            "fabric_type": "Cotton",
-            "fit": "Slim",
-            "colors": ["white", "black", "blue"],
-            "sizes": ["S", "M", "L"]
+            "fabric_type": "Polyester",
+            "fit": "Regular Fit",
+            "colors": ["Black"],
+            "sizes": ["S", "M", "L"],
+            "Neckline":"Collar",
+            "Sleeve_Length":"Long Sleeve",
+            "type":"Shirt",
         }
     },
     {
         "id": 3,
-        "title": "Mens Cotton Jacket",
+        "title": "Quilted Hooded Winter Jackets for Men & Boys Full Sleeve Mens Jacket Monsoon Jackets for Men All Weather ",
         "price": 55.99,
-        "description": "great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions, such as working, hiking, camping, mountain/rock climbing, cycling, traveling or other outdoors. Good gift choice for you or your family member. A warm hearted love to Father, husband or son in this thanksgiving or Christmas Day.",
+        "description": "Our Bomber Jacket is engineered to shield you from the elements. Its wind-resistant and water-repellent features ensure you stay comfortable and dry, making it a reliable companion during unexpected weather changes. The versatile nature of our Bomber Jacket allows you to effortlessly transition between seasons, providing you with a stylish layering option whether it's a chilly autumn evening or a crisp spring morning.",
         "category": "Men",
-        "image": "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
+        "image": ["/images/m51.jpg","/images/m52.jpg","/images/m53.jpg"],
         "rating": {
             "rate": 4.7,
             "count": 500
         },
-        "brand": "Roadstar",
+        "brand": "BoldFit",
         "discount_percentage": 15,
         "delivery_time": "3-5 business days",
         "subcategories": {
             "fabric_type": "Polyester",
             "fit": "Regular",
-            "colors": ["blue", "green", "black"],
-            "sizes": ["M", "L", "XL"]
+            "colors": ["grey"],
+            "sizes": ["M", "L", "XL"],
+            "Sleeve_Length":"Full-Sleeve",
+            "type":"Jacket",
+            "Neckline":"Semi-Collar",
         }
     },
     {
         "id": 4,
-        "title": "Mens Casual Slim Fit",
+        "title": "Men's Solid Slim Fit Shirt",
         "price": 15.99,
-        "description": "The color could be slightly different between on the screen and in practice. / Please note that body builds vary by person, therefore, detailed size information should be reviewed below on the product description.",
+        "description": "",
         "category": "Men",
-        "image": "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg",
+        "image": ["/images/m41.jpg","/images/m42.jpg","/images/m43.jpg"],
         "rating": {
-            "rate": 2.1,
+            "rate": 5,
             "count": 430
         },
-        "brand": "US Polo",
+        "brand": "Levis",
         "discount_percentage": 0,
         "delivery_time": "2-4 business days",
         "subcategories": {
             "fabric_type": "Cotton",
             "fit": "Slim",
-            "stock": false,
-            "colors": ["black", "gray", "white"],
-            "sizes": ["S", "M", "L"]
+            
+            "colors": ["Black", "gray", "white"],
+            "sizes": ["S", "M", "L"],
+            "Sleeve_Length":"Full-Sleeve",
+            "type":"Shirt"
         }
     },
     {
@@ -89,7 +97,7 @@ const Data = [
         "title": "John Hardy Women's Legends Naga Gold & Silver Dragon Station Chain Bracelet",
         "price": 695,
         "description": "From our Legends Collection, the Naga was inspired by the mythical water dragon that protects the ocean's pearl. Wear facing inward to be bestowed with love and abundance, or outward for protection.",
-        "category": "Jewellery",
+        "category": "Accessories",
         "image": "https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg",
         "rating": {
             "rate": 4.6,
@@ -107,7 +115,7 @@ const Data = [
         "title": "Solid Gold Petite Micropave ",
         "price": 168,
         "description": "Satisfaction Guaranteed. Return or exchange any order within 30 days.Designed and sold by Hafeez Center in the United States. Satisfaction Guaranteed. Return or exchange any order within 30 days.",
-        "category": "Jewellery",
+        "category": "Accessories",
         "image": "https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg",
         "rating": {
             "rate": 3.9,
@@ -125,7 +133,7 @@ const Data = [
         "title": "White Gold Plated Princess",
         "price": 9.99,
         "description": "Classic Created Wedding Engagement Solitaire Diamond Promise Ring for Her. Gifts to spoil your love more for Engagement, Wedding, Anniversary, Valentine's Day...",
-        "category": "Jewellery",
+        "category": "Accessories",
         "image": "https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_.jpg",
         "rating": {
             "rate": 3,
@@ -143,7 +151,7 @@ const Data = [
         "title": "Pierced Owl Rose Gold Plated Stainless Steel Double",
         "price": 10.99,
         "description": "Rose Gold Plated Double Flared Tunnel Plug Earrings. Made of 316L Stainless Steel",
-        "category": "Jewellery",
+        "category": "Accessories",
         "image": "https://fakestoreapi.com/img/51UDEzMJVpL._AC_UL640_QL65_ML3_.jpg",
         "rating": {
             "rate": 1.9,
@@ -158,224 +166,279 @@ const Data = [
     },
     {
         "id": 9,
-        "title": "WD 2TB Elements Portable External Hard Drive - USB 3.0 ",
+        "title": "By Lensmart | Full Rim Wayfarer Branded Latest and Stylish Sunglasses | Polarized and 100% UV Protected | Men & Women | Large | VC S12644",
         "price": 64,
-        "description": "USB 3.0 and USB 2.0 Compatibility Fast data transfers Improve PC Performance High Capacity; Compatibility Formatted NTFS for Windows 10, Windows 8.1, Windows 7; Reformatting may be required for other operating systems; Compatibility may vary depending on user’s hardware configuration and operating system",
-        "category": "Electronics",
-        "image": "https://fakestoreapi.com/img/61IBBVJvSDL._AC_SY879_.jpg",
+        "description": "Featuring Grey Full Rim Square made from Polycarbonate which is thinner and lighter than normal plastic making them ideal for both men & women.; FRAME SIZE:- Large | Frame width: 145mm | Frame Height: 45mm | Frame Dimensions: (57-16-145)mm .Lens Uv Protection Coating",
+        "category": "Accessories",
+        "image": ["/images/acc11.jpg","/images/acc12.jpg","/images/acc13.jpg","/images/acc14.jpg"],
         "rating": {
             "rate": 4.5,
             "count": 320
         },
-        "brand": "WD",
+        "brand": "Vincent Eyeware",
         "discount_percentage": 15,
         "delivery_time": "1-3 business days",
         "subcategories": {
-            "colors": ["black"]
+            // "colors": ["Black"]
         }
     },
     {
         "id": 10,
-        "title": "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s",
+        "title": "Fostelo Women's Catlin Faux Leather Handbag (Large)",
         "price": 109,
-        "description": "Easy upgrade for faster boot up, shutdown, application load and response (As compared to 5400 RPM SATA 2.5” hard drive; Based on published specifications and internal benchmarking tests using PCMark vantage scores) Boosts burst write performance, making it ideal for typical PC workloads",
-        "category": "Electronics",
-        "image": "https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_.jpg",
+        "description": "Our premium handbags for women are made of faux leather. Hand bag for women will make a good pair for both your formal and casual outfits giving you an elite, classy look. Our women bags are long-lasting and durable hence will accompany you for a long period.Fostelo stylish handbags for women looks compact but is roomy. You will have enough space to keep all your essentials.",
+        "category": "Accessories",
+        "image": ["/images/acc20.jpg","/images/acc21.jpg","/images/acc22.jpg"],
         "rating": {
             "rate": 2.9,
             "count": 470
         },
-        "brand": "SanDisk",
+        "brand": "Fostelo",
         "discount_percentage": 18,
         "delivery_time": "2-3 business days",
         "subcategories": {
-            "colors": ["black"]
+            "colors": ["Red"]
         }
     },
     {
         "id": 11,
-        "title": "Silicon Power 256GB SSD 3D NAND A55 SLC Cache Performance Boost SATA III 2.5",
+        "title": "Synthetic Leather Women's Satchel Bag | Ladies Purse Handbag",
         "price": 109,
-        "description": "3D NAND flash are applied to deliver high transfer speeds. Remarkable transfer speeds that enable faster bootup and improved overall system performance. TeraByte Write endurance (TBW) values for higher durability. Supports S.M.A.R.T. for monitoring device status and TRIM command for enhanced performance",
-        "category": "Electronics",
-        "image": "https://fakestoreapi.com/img/71kWymZ+TzL._AC_SX679_.jpg",
+        "description": "This satchel bag for women is made of high quality SYNTHETIC LEATHER (PU). Eco-friendly and No animals were harmed. Highly anti-scratch and tear-resistant, not easy to be out of shape.Mains compartments with zipper closure and back side pockets with zipper closure. One exterior zipper pockets. High capacity with lots of pockets can make your stuff well organized",
+        "category": "Accessories",
+        "image": ["/images/acc30.jpg","/images/acc31.jpg","/images/acc32.jpg"],
         "rating": {
             "rate": 4.8,
             "count": 319
         },
-        "brand": "Silicon Power",
+        "brand": "YOYOWING PU",
         "discount_percentage": 10,
         "delivery_time": "1-2 business days",
         "subcategories": {
-            "colors": ["black"]
+            "colors": ["Pink"]
         }
     },
     {
         "id": 12,
-        "title": "WD 4TB Gaming Drive Works with Playstation 4 Portable External Hard Drive",
+        "title": "Sunscreen Jacket 2.0 - Advanced Protection from Sun & Pollution - UPF 50+ Protection",
         "price": 114,
-        "description": "Expand your PS4 gaming experience, Play anywhere Fast and easy, setup Sleek design with high capacity, 3-year manufacturer's limited warranty",
-        "category": "Electronics",
-        "image": "https://fakestoreapi.com/img/61mtL65D4cL._AC_SX679_.jpg",
+        "description": "UPF 50+ Sun Protection: Blocks 98% of UV light, safeguarding against skin damage like tanning, premature aging, wrinkles, and burning from both UVA and UVB rays.Hood with Integrated Mask.Ultra Lite Breathable Sunguard Fabric",
+        "category": "Men",
+        "image":  ["/images/m61.jpg","/images/m62.jpg","/images/m63.jpg"],
         "rating": {
             "rate": 4.8,
             "count": 400
         },
-        "brand": "WD",
-        "discount_percentage": 20,
+        "brand": "BLUE TYGA",
+        "discount_percentage": 0,
         "delivery_time": "2-3 business days",
         "subcategories": {
-            "colors": ["black"]
+            "type":"Jacket",
+            "fit":"regular",
+            "colors": ["blue"],
+            "fabric_type":"Nylon",
+            "Sleeve_Length":"Full-Sleeve",
+            "sizes": ["S", "M", "L","XL"],
         }
     },
     {
         "id": 13,
         "title": "Acer SB220Q bi 21.5 inches Full HD (1920 x 1080) IPS Ultra-Thin",
-        "price": 599,
-        "description": "21. 5 inches Full HD (1920 x 1080) widescreen IPS display And Radeon free Sync technology. No compatibility for VESA Mount. Refresh Rate: 75Hz - Using HDMI port. Zero-frame design | ultra-thin | 4ms response time | IPS panel | 75Hz refresh rate | HDMI DVI ports",
-        "category": "Electronics",
-        "image": "https://fakestoreapi.com/img/81QpkIctqPL._AC_SX679_.jpg",
+        "price": 29,
+        "description": "Our Pace collection is made from super combed cotton that's breathable and utterly smooth at the same time. It feels super-soft and gentle against the skin.The super combed cotton fabric is moisture absorbing for a breathable feel all day.",
+        "category": "Men",
+        "image": ["/images/m71.jpg","/images/m72.jpg","/images/m73.jpg"],
         "rating": {
             "rate": 2.9,
             "count": 250
         },
-        "brand": "Acer",
+        "brand": "Allen Solly",
         "discount_percentage": 12,
         "delivery_time": "1-2 business days",
         "subcategories": {
-            "colors": ["black"]
+            "fabric_type": "Cotton",
+            "fit": "Regular Fit",
+            "colors": ["blue"],
+            "sizes": ["S", "M", "L"],
+            "Neckline":"Round",
+            "Sleeve_Length":"Half Sleeve",
+            "type":"Sweatshirt",
         }
     },
     {
         "id": 14,
-        "title": "Samsung 49-Inch CHG90 144Hz Curved Gaming Monitor (LC49HG90DMNXZA) – Super Ultrawide Screen QLED ",
+        "title": "Regular Fit Georgette Printed Collar Neck Full Sleeves Flower Pattern Shirt ",
         "price": 999.99,
-        "description": "49 INCH SUPER ULTRAWIDE 32:9 CURVED GAMING MONITOR with dual 27 inch screen side by side, Quantum Dot (QLED) & HDR support and 1ms response time (MPRT), Rapid 144Hz refresh rate | 1ms (MPRT) response time and FreeSync 2 technology",
-        "category": "Electronics",
-        "image": "https://fakestoreapi.com/img/81Zt42ioCgL._AC_SX679_.jpg",
+        "description": "Crafted from high-quality Georgette Material to ensure comfort for throughout the day.Designed to provide a comfortable and flattering fit for a wide range of body shapes.",
+        "category": "Women",
+        "image":  ["/images/w70.jpg","/images/w71.jpg","/images/w72.jpg"],
         "rating": {
             "rate": 2.2,
             "count": 140
         },
-        "brand": "Samsung",
+        "brand": "HOUSE OF CHIC",
         "discount_percentage": 17,
         "delivery_time": "2-4 business days",
         "subcategories": {
-            "colors": ["black"]
+            "fabric_type": "Gorgette",
+            "fit": "Regular Fit",
+            "colors": ["Multi"],
+            "sizes": ["S", "M", "L"],
+            "Neckline":"Collar",
+            "Sleeve_Length":"Full Sleeve",
+            "type":"Shirt",
         }
     },
     {
         "id": 15,
-        "title": "BIYLACLESEN Women's 3-in-1 Snowboard Jacket Winter Coats",
+        "title": "Polyester A-line V-Neck Bishop Sleeve Midi Belted Dress",
         "price": 56.99,
-        "description": "Note:The Jackets is US standard size.Please choose size as your usual wear Material: 100% Polyester; Detachable Liner Fabric: Warm Fleece. Detachable Functional Liner: Skin Friendly, Lightweigt and Warm.",
+        "description": " Perfect to be a little cocktail dress for party or wedding event. It is also suitable for night clubbing, dating, birthday ,wedding,engagement and prom occasions as an elegant dress, a unique party dress.Solid/Plain | Closure: Zip | Type: A-line | Neckline: V Neck | Sleeve type: Bishop Sleeve | Sleeve length: Long Sleeve | Waist line: High Waist | Hem Shaped: Flared",
         "category": "Women",
-        "image": "https://fakestoreapi.com/img/51Y5NI-I5jL._AC_UX679_.jpg",
+        "image": ["/images/w10.jpg","/images/w11.jpg","/images/w12.jpg"],
         "rating": {
             "rate": 2.6,
             "count": 235
         },
-        "brand": "BIYLACLESEN",
+        "brand": "Vivvli",
         "discount_percentage": 15,
         "delivery_time": "1-3 business days",
         "subcategories": {
+            "type":"dress",
             "fabric_type": "Polyester",
-            "fit": "Regular",
-            "colors": ["red", "blue", "green"],
-            "sizes": ["S", "M", "L", "XL"]
+            "Neckline" :"V Neck",
+            "colors": ["Black"],
+            "sizes": ["S", "M", "L", "XL"],
+            "Sleeve-Type":"Bishop",
+            
         }
     },
     {
         "id": 16,
-        "title": "Lock and Love Women's Removable Hooded Faux Leather Moto Biker Jacket",
+        "title": "Women's Solid Relaxed Fit Full Sleeve Co-ord Blazer and Trouser Set.",
         "price": 29.95,
-        "description": "100% POLYURETHANE (shell) 100% POLYESTER (lining) 75% POLYESTER 25% COTTON (Sweater), Faux leather material for style and comfort / 2 pockets of front, 2-For-One Hooded denim look (inside is detachable) ",
+        "description": " Crafted from luxurious viscose Rayon for comfort and style.Designed with a flattering relaxed fit for versatile styling options.",
         "category": "Women",
-        "image": "https://fakestoreapi.com/img/81XH0e8fefL._AC_UY879_.jpg",
+        "image": ["/images/w20.jpg","/images/w21.jpg","/images/w22.jpg"],
         "rating": {
             "rate": 2.9,
             "count": 340
         },
-        "brand": "Lock and Love",
+        "brand": "KOTTY",
         "discount_percentage": 16,
         "delivery_time": "2-4 business days",
         "subcategories": {
-            "fabric_type": "Faux Leather",
-            "fit": "Slim",
-            "colors": ["black", "brown"],
-            "sizes": ["S", "M", "L", "XL"]
+            "type":"dress",
+            "fabric_type": "Rayon",
+            "fit": "Regular",
+            "colors": ["Violet"],
+            "sizes": ["S", "M", "L", "XL"],
+            "Sleeve-Type":"Full Sleeve"
         }
     },
     {
         "id": 17,
-        "title": "Rain Jacket Women Windbreaker Striped Climbing Raincoats",
+        "title": "Batwing Half Sleeve Shirts Boat Neck Oversized Tunic Tops Casual Waffle Knit Shirts Tops for Women",
         "price": 39.99,
         "description": "Lightweight perfect for trip or casual wear---Long sleeve with hooded, adjustable drawstring waist design. Button and zipper front closure raincoat, fully striped Lined and Water Resistant. Quick-drying.",
         "category": "Women",
-        "image": "https://fakestoreapi.com/img/71HblAHs5xL._AC_UY879_-2.jpg",
+        "image": ["/images/w30.jpg","/images/w31.jpg","/images/w32.jpg"],
         "rating": {
             "rate": 3.8,
             "count": 679
         },
-        "brand": "Fashionhouse",
+        "brand": "FZilcon",
         "discount_percentage": 20,
         "delivery_time": "3-5 business days",
         "subcategories": {
+            "type":"T-shirts",
             "fabric_type": "Polyester",
             "fit": "Regular",
-            "colors": ["yellow", "blue", "black"],
-            "sizes": ["S", "M", "L", "XL"]
+            "colors": ["White"],
+            "sizes": ["S", "M", "L", "XL"],
+            "Sleeve-Type":"Half sleeve",
+            "Neckline":"Boat Neck",
         }
     },
     {
         "id": 18,
-        "title": "MBJ Women's Solid Short Sleeve Boat Neck V ",
+        "title": "Girls' Solid Ribbed Slim Fit Crop Tank Top ",
         "price": 9.85,
-        "description": "95% RAYON 5% SPANDEX",
+        "description": " 95% Cotton 5% Polyester, Pattern: Solid. Neck: Mock Neck; Fit Type: Slim Fit, Closure: Pull On,Crop Top, Ribbed, Tank Top",
         "category": "Women",
-        "image": "https://fakestoreapi.com/img/71z3kpMAYsL._AC_UY879_.jpg",
+        "image": ["/images/w40.jpg","/images/w41.jpg","/images/w42.jpg"],
         "rating": {
             "rate": 4.7,
             "count": 130
         },
-        "brand": "MBJ",
+        "brand": "Aahwan",
         "discount_percentage": 25,
         "delivery_time": "2-3 business days",
         "subcategories": {
-            "fabric_type": "Rayon",
+            "type":"T-shirts",
+            "fabric_type": "Cotton",
             "fit": "Slim",
-            "colors": ["red", "black", "white"],
-            "sizes": ["S", "M", "L", "XL"]
+            "colors": ["Black"],
+            "sizes": ["S", "M", "L", "XL"],
+            "Sleeve-Type":"Sleeveless",
+            "Neckline":"Mandarin",
         }
     },
     {
+        "id": 25,
+        "title": "Men Cargo Pants || Men Cargo Pants Cotton || Cargos for Men (Cargo-17-20)",
+        "price": 29,
+        "description": "Preppy style and  designed with multiple pockets and a relaxed fit, often worn for outdoor activities or casual wear. These pants typically feature large side pockets, often with flap closures, as well as additional pockets on the thighs or back.",
+        "category": "Men",
+        "image": ["/images/120.jpg","/images/121.jpg","/images/122.jpg"],
+        "rating": {
+            "rate": 2.9,
+            "count": 250
+        },
+        "brand": "Lymio",
+        "discount_percentage": 12,
+        "delivery_time": "1-2 business days",
+        "subcategories": {
+            "fabric_type": "Cotton",
+            "fit": "Relaxed",
+            "colors": ["Black"],
+            "sizes": ["S", "M", "L","XL"],
+            "Length":"Full",
+            "type":"BottomWear",
+        }
+
+    },
+    {
         "id": 19,
-        "title": "Opna Women's Short Sleeve Moisture",
+        "title": "Solid Casual Zipper Sweatshirt for Winter",
         "price": 7.95,
-        "description": "100% Polyester, Machine wash",
+        "description": "Crafted from high-quality materials, this sweatshirt is designed to provide both warmth and comfort. It is typically made from a blend of soft and cozy fabrics, such as cotton or polyester, which are known for their insulation properties.",
         "category": "Women",
-        "image": "https://fakestoreapi.com/img/51eg55uWmdL._AC_UX679_.jpg",
+        "image":["/images/w50.jpg","/images/w51.jpg","/images/w52.jpg"],
         "rating": {
             "rate": 4.5,
             "count": 146
         },
-        "brand": "Opna",
+        "brand": "LLL FASHION",
         "discount_percentage": 18,
         "delivery_time": "1-3 business days",
         "subcategories": {
-            "fabric_type": "Polyester",
-            "fit": "Regular",
-            "colors": ["pink", "black", "white"],
-            "sizes": ["S", "M", "L", "XL"]
+            "type":"Sweatshirts",
+            "fabric_type": "Cotton",
+            "fit": "Slim",
+            "colors": ["Blue"],
+            "sizes": ["S", "M", "L", "XL"],
+            "Sleeve-Type":"Full sleeve",
+            "Neckline":"Hooded",
         }
     },
     {
         "id": 20,
-        "title": "DANVOUY Womens T Shirt Casual Cotton Short",
+        "title": "Blend Women High Neck Sweatshirt",
         "price": 12.99,
         "description": "95%Cotton,5%Spandex",
         "category": "Women",
-        "image": "https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_.jpg",
+        "image": ["/images/w61.jpg","/images/w62.jpg","/images/w63.jpg"],
         "rating": {
             "rate": 3.6,
             "count": 145
@@ -386,9 +449,153 @@ const Data = [
         "subcategories": {
             "fabric_type": "Cotton",
             "fit": "Regular",
-            "colors": ["gray", "black", "white"],
-            "sizes": ["S", "M", "L", "XL"]
+            "colors": ["Gray"],
+            "sizes": ["S", "M", "L", "XL"],
+            "Sleeve-Type":"Full sleeve",
+            "Neckline":"Round Neck",
         }
-    }
+    },{
+        "id": 21,
+        "title": "Super Soft Round Neck Solid T-Shirt: Regular Fit",
+        "price": 29,
+        "description": "Our Pace collection is made from super combed cotton that's breathable and utterly smooth at the same time. It feels super-soft and gentle against the skin.The super combed cotton fabric is moisture absorbing for a breathable feel all day.",
+        "category": "Men",
+        "image": ["/images/m81.jpg","/images/m82.jpg","/images/m83.jpg"],
+        "rating": {
+            "rate": 2.9,
+            "count": 250
+        },
+        "brand": "Allen Solly",
+        "discount_percentage": 12,
+        "delivery_time": "1-2 business days",
+        "subcategories": {
+            "fabric_type": "Cotton",
+            "fit": "Regular Fit",
+            "colors": ["Violet"],
+            "sizes": ["S", "M", "L"],
+            "Neckline":"Round",
+            "Sleeve_Length":"Half Sleeve",
+            "type":"T-Shirt",
+        }
+
+    },
+    {
+        "id": 22,
+        "title": "Men's Solid Slim Fit Shirt",
+        "price": 15,
+        "description": "",
+        "category": "Men",
+        "image": ["/images/m21.jpg","/images/m22.jpg","/images/m23.jpg"],
+        "rating": {
+            "rate": 5,
+            "count": 430
+        },
+        "brand": "Levis",
+        "discount_percentage": 10,
+        "delivery_time": "2-4 business days",
+        "subcategories": {
+            "fabric_type": "Cotton",
+            "fit": "Slim",
+            "colors": ["Black"],
+            "sizes": ["S", "M", "L","XL"],
+            "Sleeve_Length":"Full-Sleeve",
+            "type":"Shirt"
+        }
+    },
+    {
+        "id": 23,
+        "title": "Men Cargo Pants || Men Cargo Pants Cotton || Cargos for Men (Cargo-17-20)",
+        "price": 29,
+        "description": "Preppy style and  designed with multiple pockets and a relaxed fit, often worn for outdoor activities or casual wear. These pants typically feature large side pockets, often with flap closures, as well as additional pockets on the thighs or back.",
+        "category": "Men",
+        "image": ["/images/110.jpg","/images/111.jpg","/images/112.jpg"],
+        "rating": {
+            "rate": 2.9,
+            "count": 250
+        },
+        "brand": "Lymio",
+        "discount_percentage": 12,
+        "delivery_time": "1-2 business days",
+        "subcategories": {
+            "fabric_type": "Cotton",
+            "fit": "Relaxed",
+            "colors": ["Beige"],
+            "sizes": ["S", "M", "L"],
+            
+            "Length":"Full",
+            "type":"BottomWear",
+        }
+
+    },
+    {
+        "id": 24,
+        "title": "Regular Fit Solid Casual Sleeveless Shirt",
+        "price": 56.99,
+        "description": "  These sleeveless collared shirts are versatile pieces of clothing that can be dressed up or down depending on the occasion,button-up front closure, allowing the wearer to easily put them on and take them off. ",
+        "category": "Women",
+        "image": ["/images/w80.jpg","/images/w81.jpg","/images/w82.jpg"],
+        "rating": {
+            "rate": 2.6,
+            "count": 235
+        },
+        "brand": "Vivvli",
+        "discount_percentage": 15,
+        "delivery_time": "1-3 business days",
+        "subcategories": {
+            "type":"Shirt",
+            "fabric_type": "Rayon",
+            "Neckline" :"Collar",
+            "colors": ["Red"],
+            "sizes": ["S", "M", "L", "XL"],
+            "Sleeve-Type":"Sleeveless", 
+        }
+    },
+    {
+        "id": 25,
+        "title": "Women's T-Shirt",
+        "price": 56.99,
+        "description": "Single Jersey, 100% Cotton , lightweight jersey fabric comprising 100% cotton. ",
+        "category": "Women",
+        "image": ["/images/w110.jpg","/images/w111.jpg","/images/112.jpg"],
+        "rating": {
+            "rate": 2.6,
+            "count": 235
+        },
+        "brand": "Tango",
+        "discount_percentage": 15,
+        "delivery_time": "1-3 business days",
+        "subcategories": {
+            "type":"T-Shirt",
+            "fabric_type": "Cotton",
+            "Neckline" :"round",
+            "colors": ["Beige"],
+            "sizes": ["S", "M", "L", "XL"],
+            "Sleeve-Type":"Half Sleeve", 
+        }
+    },
+    {
+        "id": 25,
+        "title": "Women's T-Shirt",
+        "price": 56.99,
+        "description": "Single Jersey, 100% Cotton , lightweight jersey fabric comprising 100% cotton. ",
+        "category": "Women",
+        "image": ["/images/w120.jpg","/images/w121.jpg","/images/w122.jpg"],
+        "rating": {
+            "rate": 2.6,
+            "count": 235
+        },
+        "brand": "Tango",
+        "discount_percentage": 15,
+        "delivery_time": "1-3 business days",
+        "subcategories": {
+            "type":"T-Shirt",
+            "fabric_type": "Cotton",
+            "Neckline" :"round",
+            "colors": ["Red"],
+            "sizes": ["S", "M", "L", "XL"],
+            "Sleeve-Type":"Half Sleeve", 
+        }
+    },
+    
 ];
 module.exports=Data;

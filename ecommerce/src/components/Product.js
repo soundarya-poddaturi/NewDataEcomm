@@ -45,12 +45,13 @@ const Product = ({
   const [itemsPerPage, setItemsPerPage] = useState(6);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const wishlistItems = useSelector((state) => state.wishlist.wishlistItems);
-
+  const baseURL = 'http://localhost:5000';
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(apiUrl);
         setProducts(response.data);
+        console.log(response.data);
       } catch (error) {
         console.error("Error fetching products:", error);
       }
@@ -300,7 +301,7 @@ const Product = ({
               style={{ height: "200px" }}
             >
               <img
-                src={item.image}
+                src={`${baseURL}${item.image[0]}`} 
                 className="card-img-top "
                 alt={item.title}
                 style={{

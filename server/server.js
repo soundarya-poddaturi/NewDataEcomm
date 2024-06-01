@@ -90,9 +90,13 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const port = 5000;
+const path = require('path');
+// Serve images from the 'images' directory
+
 
 // Enable CORS for all routes
 app.use(cors());
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 
 
