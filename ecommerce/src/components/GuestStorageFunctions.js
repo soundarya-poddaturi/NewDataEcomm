@@ -25,6 +25,18 @@ export const addToGuestCart = (product, quantity = 1) => {
       console.error("Product not found in guest cart.");
     }
   };
+  export const updateGuestCartItemSize = (itemId, newSize) => {
+    const guestCartItems = JSON.parse(localStorage.getItem("guestCartItems")) || [];
+    const index = guestCartItems.findIndex(item => item.id === itemId);
+  
+    if (index !== -1) {
+      guestCartItems[index].selectedSize = newSize;
+      localStorage.setItem("guestCartItems", JSON.stringify(guestCartItems));
+    }
+  };
+  
+
+  
   export const deleteGuestCartItem = (itemId) => {
     let guestCartItems = JSON.parse(localStorage.getItem("guestCartItems")) || [];
     const updatedCartItems = guestCartItems.filter(item => item.id !== itemId);

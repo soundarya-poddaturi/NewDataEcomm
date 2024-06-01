@@ -389,3 +389,8 @@ input[type=range]::-webkit-slider-thumb {
   background-color: red;
   -webkit-appearance: none;
 }
+
+.font
+{
+  font-size: larger;
+}

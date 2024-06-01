@@ -32,18 +32,19 @@ export const addToStorageCart = (product, userId, QUANTITY = 1) => {
     console.log(userId)
     let wishlistData = JSON.parse(localStorage.getItem("WishListItems")) || {};
   
-    if (wishlistData[userId]) {
-      const existingItemIndex = wishlistData[userId].findIndex(wishlistItem => wishlistItem.id === item.id);
-      if (existingItemIndex !== -1) {
-        return;
-      } else {
-        wishlistData[userId].push({ ...item, quantity: 1 });
-      }
+    // Initialize wishlistData[userId] as an empty array if it doesn't exist
+    wishlistData[userId] = wishlistData[userId] || [];
+  
+    const existingItemIndex = wishlistData[userId].findIndex(wishlistItem => wishlistItem.id === item.id);
+    if (existingItemIndex !== -1) {
+      return;
     } else {
-      wishlistData[userId] = [{ ...item, quantity: 1 }];
+      wishlistData[userId].push({ ...item, quantity: 1 });
     }
+  
     localStorage.setItem("WishListItems", JSON.stringify(wishlistData));
   };
+  
   
 
 
@@ -74,6 +75,17 @@ export const updateStorageItemQuantity = (key, userId, itemId, newQuantity) => {
 };
 
 
+export const updateStorageItemSize = (key, userId, itemId, newSize) => {
+  const currentItems = JSON.parse(localStorage.getItem(key)) || {};
+  const userItems = currentItems[userId] || [];
+  const index = userItems.findIndex(storageItem => storageItem.id === itemId);
+  if (index !== -1) {
+    userItems[index].selectedSize = newSize;
+    localStorage.setItem(key, JSON.stringify(currentItems));
+  }
+};
+
+
 export const storeOrderLocally = (userId, items, totalAmount, promoCode, calculatedDeliveryFee, subtotal, promoCodes) => {
   const orders = JSON.parse(localStorage.getItem("orders")) || {};
   const orderNumber = generateOrderNumber(); // Generate a random order number
@@ -86,6 +98,7 @@ export const storeOrderLocally = (userId, items, totalAmount, promoCode, calcula
     products: items.map((item) => ({
       productId: item.id,
       quantity: item.quantity,
+      selectedSize: item.selectedSize,
     })),
     totalAmount: totalAmount,
     promoCodeDiscountPercentage: discountPercentage,
@@ -98,7 +111,7 @@ export const storeOrderLocally = (userId, items, totalAmount, promoCode, calcula
     orders[userId] = [];
   }
   orders[userId].push(newOrder);
-
+  console.log(newOrder);
   localStorage.setItem("orders", JSON.stringify(orders));
 };
 

@@ -36,6 +36,10 @@ const CategoryProducts = () => {
   const [showSizeFilter, setShowSizeFilter] = useState(false);
   const [minPrice, setMinPrice] = useState(0); // State to store dynamic min price
   const [maxPrice, setMaxPrice] = useState(10000);
+  const [types, setTypes] = useState([]);
+const [selectedTypes, setSelectedTypes] = useState([]);
+const [showTypeFilter, setShowTypeFilter] = useState(false);
+
   const handleSliderChange = (values) => {
     setSelectedMinPrice(values[0]);
     console.log(values[0]);
@@ -48,6 +52,7 @@ const CategoryProducts = () => {
       .get(`http://localhost:5000/products/category/${category}`)
       .then((response) => {
         const data = response.data;
+        // Existing state updates
         const uniqueBrands = [...new Set(data.map((item) => item.brand))];
         setBrands(uniqueBrands);
         const uniqueSizes = [
@@ -57,7 +62,6 @@ const CategoryProducts = () => {
             )
           ),
         ];
-
         setSizes(uniqueSizes);
         const fabricTypes = [
           ...new Set(
@@ -68,9 +72,14 @@ const CategoryProducts = () => {
               .map((item) => item.subcategories.fabric_type)
           ),
         ];
-        console.log(fabricTypes);
         setFabricTypes(fabricTypes);
-
+  
+        // New filter type: types
+        const uniqueTypes = [
+          ...new Set(data.map((item) => item.subcategories.type).filter(Boolean))
+        ];
+        setTypes(uniqueTypes);
+  
         // Calculate min and max price from products
         const prices = data.map((item) => item.price);
         const minPrice = Math.min(...prices);
@@ -82,6 +91,7 @@ const CategoryProducts = () => {
         console.error("Error fetching data:", error);
       });
   }, [category]);
+  
 
   const [discountRanges, setDiscountRanges] = useState([
     "0-10",
@@ -166,7 +176,8 @@ const CategoryProducts = () => {
   useEffect(() => {
     setSelectedMinPrice(null);
     setSelectedMaxPrice(null);
-
+    setSelectedTypes([]);
+    setShowTypeFilter(false);
     setSelectedRating(null);
     setSelectedBrands([]);
     setSelectedFabricTypes([]);
@@ -229,6 +240,22 @@ const CategoryProducts = () => {
   const clearSizeFilter = () => {
     setSelectedSizes([]);
   };
+  const handleTypeChange = (type) => {
+    const updatedSelectedTypes = [...selectedTypes];
+    if (updatedSelectedTypes.includes(type)) {
+      const index = updatedSelectedTypes.indexOf(type);
+      updatedSelectedTypes.splice(index, 1);
+    } else {
+      updatedSelectedTypes.push(type);
+    }
+    console.log(updatedSelectedTypes);
+    setSelectedTypes(updatedSelectedTypes);
+  };
+  
+  const clearTypeFilter = () => {
+    setSelectedTypes([]);
+  };
+  
 
   return (
     <div className="container-fluid">
@@ -242,6 +269,20 @@ const CategoryProducts = () => {
               <div className="row">
                 <div className="container mt-3 col-12 text-center mt-2">
                   <h1 className="mb-5">Filters</h1>
+                  {types.length > 0 && (
+                <>
+                  <hr />
+                  <FilterCollapse
+                    title="Categories"
+                    items={types}
+                    selectedItems={selectedTypes}
+                    onChange={handleTypeChange} // Implement handleTypeChange similarly to other handlers
+                    showFilter={showTypeFilter}
+                    setShowFilter={setShowTypeFilter}
+                    clearFilter={clearTypeFilter} // Implement clearTypeFilter similarly to other clear functions
+                  />
+                </>
+              )}
                   <hr />
                   <FilterCollapse
                     title="Brand"
@@ -394,6 +435,7 @@ const CategoryProducts = () => {
             selectedFabricTypes={selectedFabricTypes}
             selectedSizes={selectedSizes}
             sortBy={sortBy}
+            selectedTypes={selectedTypes} 
           />
         </div>
       </div>

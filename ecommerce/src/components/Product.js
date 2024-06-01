@@ -35,6 +35,7 @@ const Product = ({
   selectedBrands,
   selectedFabricTypes,
   selectedSizes,
+  selectedTypes
 }) => {
   // console.log(minPrice+" "+maxPrice);
   const location = useLocation();
@@ -66,7 +67,7 @@ const Product = ({
       console.log(selectedSizes);
       console.log(selectedBrands);
       console.log(selectedFabricTypes);
-      console.log(selectedDiscount);
+      console.log(selectedTypes);
       let filtered;
       if (products && products.length > 0) {
         // Check if products array is defined and not empty
@@ -142,7 +143,12 @@ const Product = ({
           );
         }
       }
-
+      console.log(selectedTypes);
+      if (selectedTypes !== undefined ){
+        if(selectedTypes.length > 0) {
+        filtered = filtered.filter((product) => selectedTypes.includes(product.subcategories.type));
+      }}
+  
       // Apply fabric type filtering
       if (selectedFabricTypes !== undefined) {
         if (selectedFabricTypes != null && selectedFabricTypes.length > 0) {
@@ -167,6 +173,7 @@ const Product = ({
           });
         }
       }
+      setCurrentPage(1);
       setFilteredProducts(filtered);
     };
 
@@ -183,6 +190,7 @@ const Product = ({
     selectedSizes,
     selectedBrands,
     selectedFabricTypes,
+    selectedTypes,
   ]);
 
   //   useEffect(() => {
@@ -218,23 +226,35 @@ const Product = ({
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const userId = auth.user?.id;
 
+  // const handleAddToCart = (product) => {
+  //   if (auth.isAuthenticated) {
+  //     addToStorageCart(product, userId, 1);
+  //     dispatch(addItem({ product, quantity: 1 }));
+      
+  //   } else {
+  //     addToGuestCart(product, 1);
+  //     dispatch(addItem({ product, quantity: 1 }));
+  //   }
+  // };
   const handleAddToCart = (product) => {
+    let defaultSize = "";
+  
+    // Check if the product requires size selection and set a default size if available
+    if (product.subcategories && product.subcategories.sizes && product.subcategories.sizes.length > 0) {
+      defaultSize = product.subcategories.sizes[0]; // Assuming the first size as the default
+    }
+  
+    const cartProduct = { ...product, selectedSize: defaultSize };
+  
     if (auth.isAuthenticated) {
-      addToStorageCart(product, userId, 1);
-      dispatch(addItem({ product, quantity: 1 }));
-      toast.success("Item added to cart!", {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      });
+      addToStorageCart(cartProduct, userId, 1);
+      dispatch(addItem({ product: cartProduct, quantity: 1 }));
     } else {
-      addToGuestCart(product, 1);
-      dispatch(addItem({ product, quantity: 1 }));
+      addToGuestCart(cartProduct, 1);
+      dispatch(addItem({ product: cartProduct, quantity: 1 }));
     }
   };
+  
 
   const handleAddToWishlist = (item) => {
     if (isAuthenticated) {

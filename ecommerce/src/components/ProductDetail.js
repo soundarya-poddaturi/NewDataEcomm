@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addItem, delItem, delStorageItem } from "../reduxtoolkit/CartSlice";
+import { addItem } from "../reduxtoolkit/CartSlice";
 import { addItemToWishlist } from "../reduxtoolkit/WishlistSlice";
 import { useNavigate } from "react-router-dom";
 import Login from "./Login";
@@ -24,20 +24,7 @@ const ProductDetail = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const navigate = useNavigate();
   const userId = auth.user?.id;
-  const imagePaths = [
-    "/assets/images/category/cat-1.jpg",
-    "/assets/images/category/cat-12.jpg",
-    "/assets/images/category/cat-3.jpg",
-    "/assets/images/category/cat-1.jpg",
-    "/assets/images/category/cat-12.jpg",
-    "/assets/images/category/cat-3.jpg",
-    "/assets/images/category/cat-1.jpg",
-    "/assets/images/category/cat-12.jpg",
-    "/assets/images/category/cat-3.jpg",
-    "/assets/images/category/cat-1.jpg",
-    "/assets/images/category/cat-12.jpg",
-    "/assets/images/category/cat-3.jpg",
-  ];
+  const baseURL = "http://localhost:5000";
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -47,7 +34,7 @@ const ProductDetail = () => {
         );
         setProduct(response.data);
         console.log(response.data);
-        setMainImage(response.data.image);
+        setMainImage(`${baseURL}${response.data.image[0]}`);
       } catch (error) {
         console.error("Error fetching product details:", error);
       }
@@ -57,17 +44,15 @@ const ProductDetail = () => {
   }, [id]);
 
   const handleCart = () => {
-    console.log("gdgd");
     if (!checkSize()) return;
-    console.log("dgdgd");
     if (!auth.isAuthenticated) {
-      addToGuestCart(product, quantity);
+      addToGuestCart({ ...product, selectedSize, quantity });
     }
 
     if (cartBtn === "Add to Cart") {
-      dispatch(addItem({ product, quantity }));
+      dispatch(addItem({ product: { ...product, selectedSize }, quantity }));
       const userId = auth.user?.id;
-      addToStorageCart(product, userId, quantity);
+      addToStorageCart({ ...product, selectedSize }, userId, quantity);
       setCartBtn("Move To Cart");
     } else {
       navigate("/cart");
@@ -76,21 +61,27 @@ const ProductDetail = () => {
 
   const handleWishlist = () => {
     console.log(product);
-    const { id, title, price, image } = product;
+    const { id, title, price, image, rating, brand } = product;
     if (isAuthenticated) {
-      dispatch(addItemToWishlist({ id, title, price, image }));
+      dispatch(addItemToWishlist({ id, title, price, image, rating, brand }));
       addToStorageWishlist(product, userId);
     } else {
       addToGuestWishlist(product);
-      dispatch(addItemToWishlist({ id, title, price, image }));
+      dispatch(addItemToWishlist({ id, title, price, image, rating, brand }));
     }
   };
 
   const handleQuantityChange = (e) => {
     setQuantity(parseInt(e.target.value));
   };
+
   const checkSize = () => {
-    if (selectedSize === "") {
+    if (
+      product.subcategories &&
+      product.subcategories.sizes &&
+      product.subcategories.sizes.length > 0 &&
+      selectedSize === ""
+    ) {
       const sizeContainer = document.querySelector(".size-options");
       sizeContainer.scrollIntoView({ behavior: "smooth", block: "center" });
       const sizeWarning = document.createElement("p");
@@ -133,194 +124,203 @@ const ProductDetail = () => {
   }
 
   return (
-    <div className="container my-5 py-3">
-      <div className="row">
-        {/* Main Image and Thumbnails */}
-        <div className="col-md-6 d-flex flex-wrap">
-          {/* Main Image */}
-          <img
-            className="img-thumbnail img-fluid border-0 mb-5"
-            src={mainImage}
-            alt={product.title}
-            style={{
-              width: "500px",
-              height: "500px",
-              backgroundSize: "cover",
-              cursor: "pointer",
-            }}
-            onClick={() => handleMainImageChange(product.image)}
-          />
-          {/* Thumbnail Container */}
-          <div
-            className="thumbnail-container d-flex"
-            style={{
-              maxWidth: "500px",
-              overflowX: "auto",
-              WebkitOverflowScrolling: "touch",
-            }}
-          >
+    <div className="back">
+      <div className="container my-5 py-3">
+        <div className="row">
+          {/* Main Image and Thumbnails */}
+          <div className="col-md-6 d-flex flex-wrap align-content-lg-start">
+            {/* Main Image */}
             <img
               className="img-thumbnail img-fluid border-0 mb-5"
-              src={product.image}
+              src={mainImage}
               alt={product.title}
               style={{
-                width: "100px",
-                height: "100px",
+                width: "800px",
+                height: "600px",
                 backgroundSize: "cover",
                 cursor: "pointer",
+                // backgroundColor:"gray"
               }}
-              onClick={() => handleMainImageChange(product.image)}
+              onClick={() =>
+                handleMainImageChange(`${baseURL}${product.image[0]}`)
+              }
             />
-            {imagePaths.map((path, index) => (
-              <img
-                key={index}
-                src={path}
-                className="img-thumbnail thumbnail border-0"
-                alt="Thumbnail"
+            {/* Thumbnail Container */}
+            {product.image.length > 1 && (
+              <div
+                className="thumbnail-container d-flex"
                 style={{
-                  cursor: "pointer",
-                  width: "100px",
-                  height: "100px",
-                  backgroundSize: "cover",
+                  maxWidth: "500px",
+                  overflowX: "auto",
+                  WebkitOverflowScrolling: "touch",
                 }}
-                onMouseOver={() => handleMainImageChange(path)}
-              />
-            ))}
+              >
+                {product.image.map((img, index) => (
+                  <img
+                    key={index}
+                    src={`${baseURL}${img}`}
+                    className="img-thumbnail thumbnail border-0"
+                    alt="Thumbnail"
+                    style={{
+                      cursor: "pointer",
+                      width: "100px",
+                      height: "100px",
+                      backgroundSize: "cover",
+                    }}
+                    onMouseOver={() =>
+                      handleMainImageChange(`${baseURL}${img}`)
+                    }
+                  />
+                ))}
+              </div>
+            )}
           </div>
-        </div>
-        {/* Thumbnails and Product Information */}
-        <div className="col-md-6">
-          <div className="row">
-            {/* Product Information */}
-            <div className="col-md-12">
-              <h2 className="my-3">{product.brand}</h2>
-              <h3 className="display-6 fw-bold">{product.title}</h3>
-              <div className="">
-                {/* {Array.from({ length: product.rating.rate }).map((_, index) => (
-                  <i key={index} className="fa fa-star me-2" aria-hidden="true"></i>
-                ))} */}
-                <span className="fw-bold  border-end p-1">
-                  {product.rating.rate}{" "}
-                  <i className="fa fa-star me-2" aria-hidden="true"></i>
-                </span>
-                <span className=" p-1">({product.rating.count} Ratings)</span>
-              </div>
-              {product.discount_percentage > 0 && (
-                <div className="d-flex align-items-center p-2">
-                  <small
-                    className=" text-muted me-2 fs-5"
-                    style={{ textDecoration: "line-through" }}
-                  >
-                    $
-                    {(
-                      product.price +
-                      (product.price * product.discount_percentage) / 100
-                    ).toFixed(1)}
-                  </small>
-                  <small className=" text-danger fw-bold fs-5">
-                    ({product.discount_percentage}% off)
-                  </small>
+          {/* Thumbnails and Product Information */}
+          <div className="col-md-6">
+            <div className="row">
+              {/* Product Information */}
+              <div className="col-md-12">
+                <p className="my-1 font">{product.brand}</p>
+                <p className=" fw-semibold fs-4 m-0" >{product.title}</p>
+                <div className="d-flex align-items-baseline justify-content-between">
+                  <div>
+                  <span className="fw-bold  border-end p-1">
+                    {product.rating.rate}{" "}
+                    <i className="fa fa-star me-2" aria-hidden="true"></i>
+                  </span>
+                 
+                  <span className=" p-1">({product.rating.count} Ratings)</span>
+                  </div>
+                  {product.discount_percentage > 0 && (
+                    <div className="d-flex  p-2">
+                      <small
+                        className=" text-muted me-2 "
+                        style={{ textDecoration: "line-through" }}
+                      >
+                        $
+                        {(
+                          product.price +
+                          (product.price * product.discount_percentage) / 100
+                        ).toFixed(1)}
+                      </small>
+                      <small className=" text-danger fw-bold ">
+                        ({product.discount_percentage}% off)
+                      </small>
+                    </div>
+                  )}
                 </div>
-              )}
-              <hr />
 
-              <h2 className="my-2 fw-semibold ">${product.price}</h2>
+                <hr className="mt-0 mb-1" />
 
-              <p className="text-capitalize lead">{product.description}</p>
-              {/* Size Selection */}
-              <albel>Size</albel>
-              {product.subcategories && product.subcategories.sizes && (
-                <div className="size-options">
-                  {product.subcategories.sizes.map((size, index) => (
-                    <label
-                      key={index}
-                      className={`size-option ${
-                        selectedSize === size ? "selected" : ""
-                      }`}
+                <h3 className="my-2 fw-semibold ">${product.price}</h3>
+
+                {/* Size Selection */}
+                {product.subcategories &&
+                  product.subcategories.sizes &&
+                  product.subcategories.sizes.length > 0 && (
+                    <>
+                      <label className="text-muted">Size</label>
+                      <div  className="size-options" role="radiogroup" aria-labelledby="size">
+                        {product.subcategories.sizes.map((size, index) => (
+                          <label
+                            key={index}
+                            className={`size-option ${
+                              selectedSize === size ? "selected" : ""
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              value={size}
+                              checked={selectedSize === size}
+                              onChange={() => handleSizeChange(size)}
+                              className="d-none"
+                              aria-checked={selectedSize === size ? "true" : "false"}
+                            />
+                            {size}
+                          </label>
+                        ))}
+                      </div>
+                    </>
+                  )}
+                {/* Quantity selection */}
+                <div className="mb-2">
+                  <label htmlFor="quantity" className="form-label text-muted mb-0">
+                    Quantity
+                  </label>
+                  <select
+                    className="form-select mb-2 border-2"
+                    style={{ width: "25%" }}
+                    value={quantity}
+                    onChange={handleQuantityChange}
+                  >
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+                </div>
+                <p className="fs-6 lead">{product.description}</p>
+
+                {/* Stock Availability and Delivery Time */}
+                <div className="mb-3">
+                  <p>
+                    <strong>Delivery Time: </strong> {product.delivery_time}
+                  </p>
+                  {product.subcategories &&
+                    Object.keys(product.subcategories).length > 0 && (
+                      <div className="card">
+                        <div className="card-header">
+                          <strong>Product Details</strong>
+                        </div>
+                        <ul className="list-group list-group-flush">
+                          {Object.entries(product.subcategories)
+                            .filter(([key]) => key !== "sizes") // Filter out 'sizes' key
+                            .map(([key, value], index) => (
+                              <li className="list-group-item" key={index}>
+                                <strong>{key.replace(/_/g, " ")}:</strong>{" "}
+                                {value}
+                              </li>
+                            ))}
+                        </ul>
+                      </div>
+                    )}
+                </div>
+
+                {/* Add to Cart Button */}
+                <div className="d-flex flex-column">
+                  <div className="d-flex flex-start my-4">
+                    <button
+                      className="btn btn-dark rounded-0 me-3 w-25"
+                      onClick={handleWishlist}
                     >
-                      <input
-                        type="radio"
-                        value={size}
-                        checked={selectedSize === size}
-                        onChange={() => handleSizeChange(size)}
-                        className="d-none"
-                      />
-                      {size}
-                    </label>
-                  ))}
-                </div>
-              )}
-              {/* Quantity selection */}
-              <div className="mb-2">
-                <label htmlFor="quantity" className="form-label">
-                  Quantity
-                </label>
-                <select
-                  className="form-select mb-2 border-2"
-                  style={{ width: "25%" }}
-                  value={quantity}
-                  onChange={handleQuantityChange}
-                >
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                </select>
-              </div>
-
-              {/* Stock Availability and Delivery Time */}
-
-              <div className="mb-3">
-                <p>
-                  <strong>Delivery Time : </strong> {product.delivery_time}
-                </p>
-                {product.subcategories && (
-                  <>
-                    {product.subcategories.fabric_type &&
-                    <p>
-                      <strong>Fabric Type:</strong>
-                      {product.subcategories.fabric_type}
-                    </p>
-}
-                    {product.subcategories.fit &&<p>
-                      <strong>Fit:</strong> {product.subcategories.fit}
-                    </p>}
-                  </>
-                )}
-              </div>
-
-              {/* Add to Cart Button */}
-              <div className="d-flex flex-column">
-                <div className="d-flex flex-start my-4">
-                  <button
-                    className="btn btn-dark rounded-0 me-3 w-25"
-                    onClick={handleWishlist}
-                  >
-                    Wishlist
-                  </button>
-                  <button
-                    className="btn btn-dark rounded-0 w-25"
-                    onClick={handleCart}
-                  >
-                    {cartBtn}
-                  </button>
-                </div>
-                <div>
-                  <button
-                    className="btn btn-warning rounded-0 "
-                    style={{ width: "53%" }}
-                    onClick={handleBuyNow}
-                  >
-                    Buy Now
-                  </button>
+                      Wishlist
+                    </button>
+                    <button
+                      className="btn btn-dark rounded-0 w-25"
+                      onClick={handleCart}
+                    >
+                      {cartBtn}
+                    </button>
+                  </div>
+                  <div>
+                    <button
+                      className="btn btn-warning rounded-0 "
+                      style={{ width: "53%" }}
+                      onClick={handleBuyNow}
+                    >
+                      Buy Now
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        {showLoginModal && (
+          <Login closeModal={() => setShowLoginModal(false)} />
+        )}
       </div>
-      {showLoginModal && <Login closeModal={() => setShowLoginModal(false)} />}
     </div>
   );
 };

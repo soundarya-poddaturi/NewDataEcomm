@@ -12,21 +12,30 @@ const Wishlist = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated); 
   const auth = useSelector((state) => state.auth); 
   const userId = auth.user?.id;
+  const baseURL = 'http://localhost:5000';
   const handleAddToCart = (product) => {
-    console.log("wishlist btn")
-
-    if(!isAuthenticated)
+    let defaultSize = "";
+  
+    // Check if the product requires size selection and set a default size if available
+    if (product.subcategories && product.subcategories.sizes && product.subcategories.sizes.length > 0) {
+      defaultSize = product.subcategories.sizes[0]; // Assuming the first size as the default
+    }
+  
+    const cartProduct = { ...product, selectedSize: defaultSize };
+   
+       if(!isAuthenticated)
       {
         dispatch(removeItemFromWishlist(product.id));
-        dispatch(addItem({ product, quantity: 1 }));
-        addToGuestCart(product,1);
+        addToGuestCart(cartProduct, 1);
+      dispatch(addItem({ product: cartProduct, quantity: 1 }));
         deleteGuestWishlistItem(product.id); 
       }
       else{
-        dispatch(addItem({ product, quantity: 1 }));
+      
         dispatch(removeItemFromWishlist(product.id)); 
         const userId = auth.user?.id;
-        addToStorageCart(product,userId,1);
+        addToStorageCart(cartProduct, userId, 1);
+        dispatch(addItem({ product: cartProduct, quantity: 1 }));
       }
   };
   
@@ -99,7 +108,7 @@ const Wishlist = () => {
                       >
                         <NavLink to={`/products/${item.id}`}>
                             <img
-                              src={item.image}
+                              src={`${baseURL}${item.image[0]}`}
                               className="card-img-top"
                               alt={item.title}
                               style={{

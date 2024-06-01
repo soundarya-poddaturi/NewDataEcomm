@@ -12,6 +12,9 @@ const Profile = () => {
   const handleLoginClick = () => {
     setShowLoginModal(true);
   };
+  const closeModal = () => {
+    setShowLoginModal(false);
+  };
   const scrollToOrderDetails = () => {
     orderDetailsRef.current.scrollIntoView({ behavior: "smooth" });
   };
@@ -113,6 +116,7 @@ const Profile = () => {
 
        
       </div>
+      {showLoginModal && <Login closeModal={closeModal} />}
     </>
   );
 };

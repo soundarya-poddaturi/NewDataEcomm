@@ -15,8 +15,8 @@ const Data = [
         "delivery_time": "2-3 business days",
         "subcategories": {
             "fabric_type": "Polyester",
-            // "fit": "Regular",
-            // "colors": ["Black", "gray"],
+            "type":"ArmSleeves",
+            "colors": ["Black"],
             
         }
     },
@@ -26,7 +26,7 @@ const Data = [
         "price": 22.3,
         "description": "Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.",
         "category": "Men",
-        "image": ["/images/m000.jpg","/images/m001.jpg","/images/m002.jpg","/images/m003.jpg"],
+        "image": ["/images/m001.jpg","/images/m000.jpg","/images/m002.jpg","/images/m003.jpg"],
         "rating": {
             "rate": 4.1,
             "count": 259
@@ -98,7 +98,7 @@ const Data = [
         "price": 695,
         "description": "From our Legends Collection, the Naga was inspired by the mythical water dragon that protects the ocean's pearl. Wear facing inward to be bestowed with love and abundance, or outward for protection.",
         "category": "Accessories",
-        "image": "https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg",
+        "image": ["/images/acc1.jpg"],
         "rating": {
             "rate": 4.6,
             "count": 400
@@ -107,7 +107,8 @@ const Data = [
         "discount_percentage": 13,
         "delivery_time": "2-3 business days",
         "subcategories": {
-            "colors": ["gold", "silver"]
+            "colors": ["Silver"],
+            "type":"Bracelets"
         }
     },
     {
@@ -116,7 +117,7 @@ const Data = [
         "price": 168,
         "description": "Satisfaction Guaranteed. Return or exchange any order within 30 days.Designed and sold by Hafeez Center in the United States. Satisfaction Guaranteed. Return or exchange any order within 30 days.",
         "category": "Accessories",
-        "image": "https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg",
+        "image": ["/images/acc2.jpg"],
         "rating": {
             "rate": 3.9,
             "count": 70
@@ -125,7 +126,9 @@ const Data = [
         "discount_percentage": 19,
         "delivery_time": "3-4 business days",
         "subcategories": {
-            "colors": ["gold"]
+            "colors": ["gold"],
+            "type":"Ring"
+
         }
     },
     {
@@ -134,7 +137,7 @@ const Data = [
         "price": 9.99,
         "description": "Classic Created Wedding Engagement Solitaire Diamond Promise Ring for Her. Gifts to spoil your love more for Engagement, Wedding, Anniversary, Valentine's Day...",
         "category": "Accessories",
-        "image": "https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_.jpg",
+        "image": ["/images/acc3.jpg"],
         "rating": {
             "rate": 3,
             "count": 400
@@ -143,7 +146,8 @@ const Data = [
         "discount_percentage": 21,
         "delivery_time": "1-2 business days",
         "subcategories": {
-            "colors": ["white", "gold"]
+            "colors": ["Silver"],
+            "type":"Ring"
         }
     },
     {
@@ -152,7 +156,7 @@ const Data = [
         "price": 10.99,
         "description": "Rose Gold Plated Double Flared Tunnel Plug Earrings. Made of 316L Stainless Steel",
         "category": "Accessories",
-        "image": "https://fakestoreapi.com/img/51UDEzMJVpL._AC_UL640_QL65_ML3_.jpg",
+        "image": ["/images/acc4.jpg"],
         "rating": {
             "rate": 1.9,
             "count": 100
@@ -161,7 +165,8 @@ const Data = [
         "discount_percentage": 14,
         "delivery_time": "2-3 business days",
         "subcategories": {
-            "colors": ["rose gold", "silver"]
+            "colors": ["Rose gold"],
+            "type":"Earrings"
         }
     },
     {
@@ -170,7 +175,7 @@ const Data = [
         "price": 64,
         "description": "Featuring Grey Full Rim Square made from Polycarbonate which is thinner and lighter than normal plastic making them ideal for both men & women.; FRAME SIZE:- Large | Frame width: 145mm | Frame Height: 45mm | Frame Dimensions: (57-16-145)mm .Lens Uv Protection Coating",
         "category": "Accessories",
-        "image": ["/images/acc11.jpg","/images/acc12.jpg","/images/acc13.jpg","/images/acc14.jpg"],
+        "image": ["/images/acc10.jpg","/images/acc11.jpg","/images/acc12.jpg","/images/acc13.jpg"],
         "rating": {
             "rate": 4.5,
             "count": 320
@@ -179,7 +184,8 @@ const Data = [
         "discount_percentage": 15,
         "delivery_time": "1-3 business days",
         "subcategories": {
-            // "colors": ["Black"]
+            "colors": ["Black"],
+            "type":"Sunglasses"
         }
     },
     {
@@ -197,7 +203,8 @@ const Data = [
         "discount_percentage": 18,
         "delivery_time": "2-3 business days",
         "subcategories": {
-            "colors": ["Red"]
+            "colors": ["Red"],
+            "type":"Handbags"
         }
     },
     {
@@ -215,7 +222,8 @@ const Data = [
         "discount_percentage": 10,
         "delivery_time": "1-2 business days",
         "subcategories": {
-            "colors": ["Pink"]
+            "colors": ["Pink"],
+            "type":"Handbags"
         }
     },
     {
@@ -262,7 +270,7 @@ const Data = [
             "sizes": ["S", "M", "L"],
             "Neckline":"Round",
             "Sleeve_Length":"Half Sleeve",
-            "type":"Sweatshirt",
+            "type":"T-Shirt",
         }
     },
     {
@@ -304,7 +312,7 @@ const Data = [
         "discount_percentage": 15,
         "delivery_time": "1-3 business days",
         "subcategories": {
-            "type":"dress",
+            "type":"Dress",
             "fabric_type": "Polyester",
             "Neckline" :"V Neck",
             "colors": ["Black"],
@@ -328,7 +336,7 @@ const Data = [
         "discount_percentage": 16,
         "delivery_time": "2-4 business days",
         "subcategories": {
-            "type":"dress",
+            "type":"Dress",
             "fabric_type": "Rayon",
             "fit": "Regular",
             "colors": ["Violet"],
@@ -351,7 +359,7 @@ const Data = [
         "discount_percentage": 20,
         "delivery_time": "3-5 business days",
         "subcategories": {
-            "type":"T-shirts",
+            "type":"T-Shirt",
             "fabric_type": "Polyester",
             "fit": "Regular",
             "colors": ["White"],
@@ -375,7 +383,7 @@ const Data = [
         "discount_percentage": 25,
         "delivery_time": "2-3 business days",
         "subcategories": {
-            "type":"T-shirts",
+            "type":"T-Shirt",
             "fabric_type": "Cotton",
             "fit": "Slim",
             "colors": ["Black"],
@@ -390,7 +398,7 @@ const Data = [
         "price": 29,
         "description": "Preppy style and  designed with multiple pockets and a relaxed fit, often worn for outdoor activities or casual wear. These pants typically feature large side pockets, often with flap closures, as well as additional pockets on the thighs or back.",
         "category": "Men",
-        "image": ["/images/120.jpg","/images/121.jpg","/images/122.jpg"],
+        "image": ["/images/m120.jpg","/images/m121.jpg","/images/m122.jpg"],
         "rating": {
             "rate": 2.9,
             "count": 250
@@ -447,6 +455,7 @@ const Data = [
         "discount_percentage": 20,
         "delivery_time": "2-3 business days",
         "subcategories": {
+            "type":"Sweatshirts",
             "fabric_type": "Cotton",
             "fit": "Regular",
             "colors": ["Gray"],
@@ -460,7 +469,7 @@ const Data = [
         "price": 29,
         "description": "Our Pace collection is made from super combed cotton that's breathable and utterly smooth at the same time. It feels super-soft and gentle against the skin.The super combed cotton fabric is moisture absorbing for a breathable feel all day.",
         "category": "Men",
-        "image": ["/images/m81.jpg","/images/m82.jpg","/images/m83.jpg"],
+        "image": ["/images/m82.jpg","/images/m81.jpg","/images/m83.jpg"],
         "rating": {
             "rate": 2.9,
             "count": 250
@@ -508,7 +517,7 @@ const Data = [
         "price": 29,
         "description": "Preppy style and  designed with multiple pockets and a relaxed fit, often worn for outdoor activities or casual wear. These pants typically feature large side pockets, often with flap closures, as well as additional pockets on the thighs or back.",
         "category": "Men",
-        "image": ["/images/110.jpg","/images/111.jpg","/images/112.jpg"],
+        "image": ["/images/m110.jpg","/images/m111.jpg","/images/m112.jpg"],
         "rating": {
             "rate": 2.9,
             "count": 250
@@ -556,7 +565,7 @@ const Data = [
         "price": 56.99,
         "description": "Single Jersey, 100% Cotton , lightweight jersey fabric comprising 100% cotton. ",
         "category": "Women",
-        "image": ["/images/w110.jpg","/images/w111.jpg","/images/112.jpg"],
+        "image": ["/images/w111.jpg","/images/w110.jpg","/images/112.jpg"],
         "rating": {
             "rate": 2.6,
             "count": 235
@@ -574,7 +583,7 @@ const Data = [
         }
     },
     {
-        "id": 25,
+        "id": 26,
         "title": "Women's T-Shirt",
         "price": 56.99,
         "description": "Single Jersey, 100% Cotton , lightweight jersey fabric comprising 100% cotton. ",

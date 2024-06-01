@@ -39,6 +39,13 @@ const cartSlice = createSlice({
                 state.total = state.subtotal;
             }
         },
+        updateSize(state, action) {
+            const { id, size } = action.payload;
+            const itemToUpdate = state.items.find(item => item.id === id);
+            if (itemToUpdate) {
+              itemToUpdate.selectedSize = size;
+            }
+          },
             
         clearCart(state) {
             state.items = [];
@@ -81,5 +88,5 @@ const calculateTotal = (items) => {
     return items.reduce((total, item) => total + item.price * item.quantity, 0);
 };
 
-export const { addItem, delItem, updateQuantity,clearCart ,addToCart,clearStorageItems} = cartSlice.actions;
+export const { addItem, delItem, updateQuantity,updateSize,clearCart ,addToCart,clearStorageItems} = cartSlice.actions;
 export default cartSlice.reducer;

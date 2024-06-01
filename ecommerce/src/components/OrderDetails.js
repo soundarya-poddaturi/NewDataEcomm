@@ -1,35 +1,40 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 const OrderDetails = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const userId = useSelector((state) => state.auth.user?.id);
   const [orders, setOrders] = useState([]);
   const [userAddress, setUserAddress] = useState({});
   const [productDetails, setProductDetails] = useState([]);
-  const navigate=useNavigate();
+  const navigate = useNavigate();
+  const baseURL = "http://localhost:5000";
   useEffect(() => {
     if (isAuthenticated && userId) {
       axios
-      .get(`http://localhost:5000/orders/${userId}`)
+        .get(`http://localhost:5000/orders/${userId}`)
 
         .then((response) => {
           const fetchedOrders = response.data;
           console.log(fetchedOrders);
           const storedOrders = JSON.parse(localStorage.getItem("orders")) || {};
           const userStoredOrders = storedOrders[userId] || [];
-          const mergedOrders = [...userStoredOrders.reverse(), ...fetchedOrders];
+          console.log(userStoredOrders);
+          const mergedOrders = [
+            ...userStoredOrders.reverse(),
+            ...fetchedOrders,
+          ];
           setOrders(mergedOrders);
         })
         .catch((error) => {
           console.error("Error fetching order details:", error);
         });
-    
+
       axios
         .get(`http://localhost:5000/users/${userId}`)
         .then((response) => {
-          console.log(response.data.address)
+          console.log(response.data.address);
           setUserAddress(response.data.address);
         })
         .catch((error) => {
@@ -41,31 +46,34 @@ const OrderDetails = () => {
   useEffect(() => {
     const fetchProductDetails = async () => {
       const details = await Promise.all(
-        orders.flatMap((order) =>
-          order.products.map((product) => product.productId)
-        ).map((productId) => {
-          console.log(productId); // Log the product ID
-          return axios
-            .get(`http://localhost:5000/products/${productId}`)
-            .then((response) => response.data)
-            .catch((error) => {
-              console.error(
-                `Error fetching product details for product ID ${productId}:`,
-                error
-              );
-              return null;
-            });
-        })
+        orders
+          .flatMap((order) =>
+            
+            order.products.map((product) => product.productId)
+          )
+          .map((productId) => {
+            console.log(productId); // Log the product ID
+            
+            return axios
+              .get(`http://localhost:5000/products/${productId}`)
+              .then((response) => response.data)
+              .catch((error) => {
+                console.error(
+                  `Error fetching product details for product ID ${productId}:`,
+                  error
+                );
+                return null;
+              });
+          })
       );
       setProductDetails(details);
     };
-    
 
     if (orders.length > 0) {
       fetchProductDetails();
     }
   }, [orders]);
-  
+
   if (orders.length === 0) {
     return <div>You haven't made any orders yet.</div>;
   }
@@ -86,16 +94,13 @@ const OrderDetails = () => {
             <div className=" card-sm bg-body-tertiary  ">
               <div className="card-body  p-0 rounded-0 border-none">
                 <div className="row p-3  ">
-                
                   <div className="col-6 col-lg-3">
                     <h6 className="heading-xxxs  text-primary">Order No:</h6>
                     <p className="mb-lg-0 fs-sm ">{order.id}</p>
                   </div>
                   <div className="col-6 col-lg-3">
                     <h6 className="heading-xxxs text-primary">Shipped date:</h6>
-                    <p className="mb-lg-0 fs-sm ">
-                      {formatDate(order.date)}
-                    </p>
+                    <p className="mb-lg-0 fs-sm ">{formatDate(order.date)}</p>
                   </div>
                   <div className="col-12 col-lg-6">
                     <h6 className="heading-xxxs text-primary">
@@ -105,14 +110,15 @@ const OrderDetails = () => {
                       {userAddress.street}, {userAddress.city},{" "}
                       {userAddress.number}, {userAddress.zipcode}
                     </p>
-                 
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <div className="card-footer bg-body">
-            <h6 className="mb-5 text-primary ">Order Items ({order.products.length})</h6>
+            <h6 className="mb-5 text-primary ">
+              Order Items ({order.products.length})
+            </h6>
 
             <ul className="list-group list-group-lg list-group-flush-y list-group-flush-x border-none rounded-0 ">
               {order.products.map((product, productIndex) => {
@@ -123,52 +129,61 @@ const OrderDetails = () => {
                   ? productDetail.price * product.quantity
                   : 0;
                 return (
-                  <li key={productIndex} className="list-group-item border-0">
+                  <li
+                    key={productIndex}
+                    className="list-group-item border-0 p-0"
+                  >
                     <div className="row align-items-center">
                       <div className="col-4 col-md-3 col-xl-2">
                         {productDetail && (
                           <img
-                            src={productDetail.image}
+                            src={`${baseURL}${productDetail.image[0]}`}
                             alt={`Product ${product.productId}`}
-                            className="img-fluid"
+                            className="img-fluid w-100"
                           />
                         )}
                       </div>
-                      <div className="col border-none rounded-0">
-                        <p className="mb-4 fs-sm ">
-                        <a
-                          className="text-body fw-bold"
-                          href={`products/${product.productId}`}
-                          onClick={(e) => {
-                            // Prevent the default link behavior
-                            e.preventDefault();
-                            // Manually navigate to the product page while preserving authentication state
-                            navigate(`products/${product.productId}`);
-                          }}
-                        >
-                          {productDetail && productDetail.title}
-                          </a>
-                          <br />
-                          <span className="text-muted">
+
+                      <div className="col-8 col-md-9 col-xl-10 border-none rounded-0">
+                        <div style={{ maxWidth: "100%" }}>
+                          <p className="fs-sm mb-0">
+                            {productDetail && (
+                              <span className="text-muted d-block">
+                                {productDetail.brand}
+                              </span>
+                            )}
+                            <NavLink
+                              to={`products/${product.productId}`}
+                              className="text-body fw-bold text-truncate d-block"
+                              style={{
+                                display: "inline-block",
+                                maxWidth: "100%",
+                              }}
+                            >
+                              {productDetail && productDetail.title}
+                            </NavLink>
+                          </p>
+                          <p className="fs-sm text-muted">
                             Quantity: {product.quantity}
-                          </span>
-                          <br />
-                          <span className="text-muted">
+                            <br />
                             Price: $
                             {productDetail && productDetail.price.toFixed(2)}
-                          </span>
-                          <br />
-                          <span className="text-muted text-dark">
+                            <br />
                             Subtotal: ${subtotal.toFixed(2)}
-                          </span>
-                        </p>
-                        <div className="fs-sm text-muted">
-                          {/* Add product details like size, color */}
+                            <br/>
+                            { product.selectedSize && (
+                          <>
+                            <span>Size: {product.selectedSize}</span>
+                            <br />
+                          </>
+                        )}
+                          </p>
                         </div>
+                        
+
                       </div>
-                     
                     </div>
-                    <hr/>
+                    <hr />
                   </li>
                 );
               })}
@@ -203,15 +218,19 @@ const OrderDetails = () => {
               {order.promoCode && (
                 <div className="row">
                   <div className="col-6">
-                    <p className="text-danger">Coupon Used : <small className="text-success ">{order.promoCode}</small></p>
-                    
+                    <p className="text-danger">
+                      Coupon Used :{" "}
+                      <small className="text-success ">{order.promoCode}</small>
+                    </p>
                   </div>
                   <div className="col-6 text-end fw-semibold ">
-                    <p className="text-success">-{order.promoCodeDiscountPercentage}%</p>
+                    <p className="text-success">
+                      -{order.promoCodeDiscountPercentage}%
+                    </p>
                   </div>
                 </div>
               )}
-              {order.calculatedDeliveryFee>=0 && (
+              {order.calculatedDeliveryFee >= 0 && (
                 <div className="row">
                   <div className="col-6">
                     <p className="text-danger">Delivery fee:</p>

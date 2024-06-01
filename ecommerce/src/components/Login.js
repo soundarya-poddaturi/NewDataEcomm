@@ -236,6 +236,7 @@ const Login = ({ closeModal }) => {
           </div>
         </div>
       </div>
+      
     </>
   );
 };
