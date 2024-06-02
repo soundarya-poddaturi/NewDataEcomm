@@ -1,0 +1,10 @@
+/* src/ScrollComponent.css */
+.scroll-component {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+  .scroll-component.visible {
+    opacity: 1;
+  }
+  

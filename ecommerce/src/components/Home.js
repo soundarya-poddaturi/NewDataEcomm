@@ -5,7 +5,7 @@ import Delivery from "./Delivery";
 import CountDown from "./CountDown";
 import HomeCat from "./HomeCat";
 import AboutSection from "./AboutSection";
-
+import ScrollComponent from "./ScrollComponent"
 const Home = () => {
 
   return (
@@ -63,6 +63,7 @@ const Home = () => {
                 className="carousel-caption d-flex justify-content-center align-items-center text-center"
                 style={{ height: "100%" }}
               >
+                
                 <div className="bg-light bg-opacity-80 p-4 text-dark">
                   <h1 className="text-uppercase">
                     Get ready to slay all day. Shop our curated collection now!
@@ -82,6 +83,7 @@ const Home = () => {
                 className="carousel-caption d-flex justify-content-center align-items-center text-center "
                 style={{ height: "100%" }}
               >
+                 
                 <div className="bg-light bg-opacity-80 p-4 text-dark">
                   <h1 className="text-uppercase">
                     Clothes that make heads turn.
@@ -89,6 +91,7 @@ const Home = () => {
                   {/* <h2 className="text-uppercase"></h2> */}
                   <p>Shop our latest arrivals</p>
                 </div>
+               
               </div>
             </div>
           </div>
@@ -123,7 +126,11 @@ const Home = () => {
         <div className="mb-5"><CountDown /></div>
          
           
-            <h2 class="my-4 fs-1 d-flex justify-content-center ">Top Categories</h2>
+        <ScrollComponent threshold={0.1} className="my-scroll-component">
+        <h2 className="my-4 fs-1 d-flex justify-content-center">
+          Top Categories
+        </h2>
+      </ScrollComponent>
            
          
         
@@ -131,7 +138,9 @@ const Home = () => {
           <Categories/>
 
         </div>
+        <ScrollComponent threshold={0.1} className="my-scroll-component">
         <HomeCat />
+        </ScrollComponent>
         {/* <div className="container">
           <div className="row">
             <h2 className="text-center mb-3 mt-3">CATEGORIES</h2>
@@ -145,8 +154,9 @@ const Home = () => {
 
        
        
-        
+        <ScrollComponent threshold={0.1} className="my-scroll-component">
         <AboutSection />
+        </ScrollComponent>
         <Delivery />
       </div>
     </div>

@@ -48,12 +48,11 @@ const OrderDetails = () => {
       const details = await Promise.all(
         orders
           .flatMap((order) =>
-            
             order.products.map((product) => product.productId)
           )
           .map((productId) => {
             console.log(productId); // Log the product ID
-            
+
             return axios
               .get(`http://localhost:5000/products/${productId}`)
               .then((response) => response.data)
@@ -106,9 +105,19 @@ const OrderDetails = () => {
                     <h6 className="heading-xxxs text-primary">
                       Shipping Address:
                     </h6>
-                    <p className="mb-lg-0 fs-sm  text-capitalize ">
-                      {userAddress.street}, {userAddress.city},{" "}
-                      {userAddress.number}, {userAddress.zipcode}
+                    <p className="mb-lg-0 fs-sm text-capitalize">
+                      {order.address ? (
+                        <>
+                          {order.address.addressValue},{" "}
+                          {order.address.countryValue},{" "}
+                          {order.address.stateValue}, {order.address.zipValue}
+                        </>
+                      ) : (
+                        <>
+                          {userAddress.street}, {userAddress.city},{" "}
+                          {userAddress.number}, {userAddress.zipcode}
+                        </>
+                      )}
                     </p>
                   </div>
                 </div>
@@ -170,17 +179,15 @@ const OrderDetails = () => {
                             {productDetail && productDetail.price.toFixed(2)}
                             <br />
                             Subtotal: ${subtotal.toFixed(2)}
-                            <br/>
-                            { product.selectedSize && (
-                          <>
-                            <span>Size: {product.selectedSize}</span>
                             <br />
-                          </>
-                        )}
+                            {product.selectedSize && (
+                              <>
+                                <span>Size: {product.selectedSize}</span>
+                                <br />
+                              </>
+                            )}
                           </p>
                         </div>
-                        
-
                       </div>
                     </div>
                     <hr />

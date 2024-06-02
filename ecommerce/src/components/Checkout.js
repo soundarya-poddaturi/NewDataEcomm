@@ -20,7 +20,11 @@ const Checkout = () => {
   const [promoCodeValid, setPromoCodeValid] = useState(true);
   const [showAddressForm, setShowAddressForm] = useState(false);
   const promoCodes = useSelector((state) => state.delivery.promoCodes);
-
+  const [addressValue, setAddressValue] = useState("");
+  const [countryValue, setCountryValue] = useState("");
+  const [stateValue, setStateValue] = useState("");
+  const [zipValue, setZipValue] = useState("");
+  const [wasValidated,setWasValidated]=useState(false)
   let items = [];
   if (checkoutItems) {
     items = checkoutItems;
@@ -63,27 +67,33 @@ const Checkout = () => {
   const handleCheckout = (e) => {
     e.preventDefault();
     const form = e.target;
-    if (!form.checkValidity()) {
+  
+    const shouldValidateAddressFields = showAddressForm || (!isAuthenticated && !userAddress);
+  
+    if (!form.checkValidity() || (shouldValidateAddressFields && !validateAddressFields(form))) {
       form.classList.add('was-validated');
+      setWasValidated(true); // Update the wasValidated state
       return;
     }
-    const ccNumber = document.getElementById('cc-number').value;
-    const ccCvv = document.getElementById('cc-cvv').value;
-  
+    const ccNumber = document.getElementById("cc-number").value;
+    const ccCvv = document.getElementById("cc-cvv").value;
+
     // Check if the credit card number is 12 digits
     const isValidCcNumber = /^\d{12}$/.test(ccNumber);
-  
+
     // Check if the CVV is 3 digits
     const isValidCvv = /^\d{3}$/.test(ccCvv);
-  
+
     if (!isValidCcNumber || !isValidCvv) {
       // Display an error message or perform any other action
-      alert('Invalid credit card number or CVV. Please check and try again.');
+      alert("Invalid credit card number or CVV. Please check and try again.");
       return;
     }
-    
 
-    const subtotal = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    const subtotal = items.reduce(
+      (acc, item) => acc + item.price * item.quantity,
+      0
+    );
     const calculatedDeliveryFee = subtotal < 100 ? deliveryFee : 0;
     let total = subtotal + calculatedDeliveryFee;
 
@@ -99,12 +109,49 @@ const Checkout = () => {
         deleteStorageCartItem("cartItems", userId, item.id);
       });
     }
+    const address = {
+      addressValue,
+      countryValue,
+      stateValue,
+      zipValue,
+    };
 
-    storeOrderLocally(userId, items, total, promoCode, calculatedDeliveryFee, subtotal, promoCode);
+    storeOrderLocally(
+      userId,
+      items,
+      total,
+      promoCode,
+      calculatedDeliveryFee,
+      subtotal,
+      promoCode,
+      address
+    );
     dispatch(clearPromoCode());
     setPromoCode("");
 
     navigate("/confirmation");
+  };
+  const validateAddressFields = (form) => {
+    console.log('Validating address fields...');
+    console.log(addressValue+" "+countryValue+" "+stateValue+" "+zipValue);
+   
+  
+    if (showAddressForm) {
+      if (
+        !addressValue ||
+        !countryValue ||
+        !stateValue ||
+      
+        !zipValue
+       
+      ) {
+        console.log('Address fields are invalid');
+        return false;
+      }
+    }
+  
+    console.log('Address fields are valid');
+    return true;
   };
 
   return (
@@ -140,7 +187,7 @@ const Checkout = () => {
                 noValidate
               >
                 <div className="row g-3">
-                  <div className="col-sm-6">
+                  {/* <div className="col-sm-6">
                     <label htmlFor="firstName" className="form-label">
                       First name
                     </label>
@@ -154,8 +201,8 @@ const Checkout = () => {
                     <div className="invalid-feedback">
                       Valid first name is required.
                     </div>
-                  </div>
-                  <div className="col-sm-6">
+                  </div> */}
+                  {/* <div className="col-sm-6">
                     <label htmlFor="lastName" className="form-label">
                       Last name
                     </label>
@@ -169,7 +216,7 @@ const Checkout = () => {
                     <div className="invalid-feedback">
                       Valid last name is required.
                     </div>
-                  </div>
+                  </div> */}
                   <div className="col-12">
                     <label htmlFor="email" className="form-label">
                       Email <span className="text-muted">(Optional)</span>
@@ -190,25 +237,18 @@ const Checkout = () => {
                     </label>
                     <input
                       type="text"
-                      className="form-control"
+                      className={`form-control ${showAddressForm && !addressValue && wasValidated ? 'is-invalid' : ''}`}
                       id="address"
                       placeholder="1234 Main St"
-                      required
+                      required={showAddressForm}
+                      value={addressValue}
+                      onChange={(e) => setAddressValue(e.target.value)}
                     />
-                    <div className="invalid-feedback">
-                      Please enter your shipping address.
-                    </div>
-                  </div>
-                  <div className="col-12">
-                    <label htmlFor="address2" className="form-label">
-                      Address 2 <span className="text-muted">(Optional)</span>
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="address2"
-                      placeholder="Apartment or suite"
-                    />
+                    {showAddressForm && !addressValue && (
+                      <div className="invalid-feedback">
+                        Please enter your shipping address.
+                      </div>
+                    )}
                   </div>
 
                   <div className="col-md-5">
@@ -217,47 +257,73 @@ const Checkout = () => {
                     </label>
                     <input
                       type="text"
-                      className="form-control"
-                      id="address2"
+                      className={`form-control ${
+                        showAddressForm && !countryValue && wasValidated ? "is-invalid" : ""
+                      }`}
+                      id="country"
                       placeholder="United States"
+                      required={showAddressForm}
+                      value={countryValue}
+                      onChange={(e) => setCountryValue(e.target.value)}
                     />
-                    <div className="invalid-feedback">
-                      Please select a valid country.
-                    </div>
+                    {showAddressForm && !countryValue && (
+                      <div className="invalid-feedback">
+                        Please select a valid country.
+                      </div>
+                    )}
                   </div>
+
                   <div className="col-md-4">
                     <label htmlFor="state" className="form-label">
                       State
                     </label>
                     <input
                       type="text"
-                      className="form-control"
-                      id="address2"
+                      className={`form-control ${
+                        showAddressForm && !stateValue && wasValidated? "is-invalid" : ""
+                      }`}
+                      id="state"
                       placeholder="State"
+                      required={showAddressForm}
+                      value={stateValue}
+                      onChange={(e) => setStateValue(e.target.value)}
                     />
-                    <div className="invalid-feedback">
-                      Please provide a valid state.
-                    </div>
+                    {showAddressForm && !stateValue && (
+                      <div className="invalid-feedback">
+                        Please provide a valid state.
+                      </div>
+                    )}
                   </div>
+
                   <div className="col-md-3">
                     <label htmlFor="zip" className="form-label">
                       Zip
                     </label>
                     <input
                       type="text"
-                      className="form-control"
+                      className={`form-control ${
+                        showAddressForm && !zipValue && wasValidated ? "is-invalid" : ""
+                      }`}
                       id="zip"
                       placeholder=""
-                      required
+                      required={showAddressForm}
+                      value={zipValue}
+                      onChange={(e) => setZipValue(e.target.value)}
                     />
-                    <div className="invalid-feedback">Zip code required.</div>
+                    {showAddressForm && !zipValue && (
+                      <div className="invalid-feedback">Zip code required.</div>
+                    )}
                   </div>
                 </div>
               </form>
             )}
 
             <h4 className="mb-3">Payment</h4>
-            <form className="needs-validation" onSubmit={handleCheckout} noValidate>
+            <form
+              className="needs-validation"
+              onSubmit={handleCheckout}
+              noValidate
+            >
               <div className="my-3">
                 <div className="form-check">
                   <input
@@ -298,7 +364,7 @@ const Checkout = () => {
                 </div>
               </div>
               <div className="row gy-3 my-4 ">
-              <div className="col-md-6">
+                <div className="col-md-6">
                   <label htmlFor="cc-name" className="form-label">
                     Name on card
                   </label>
@@ -360,11 +426,16 @@ const Checkout = () => {
                     pattern="\d{3}"
                     required
                   />
-                  <div className="invalid-feedback">Security code required.</div>
+                  <div className="invalid-feedback">
+                    Security code required.
+                  </div>
                 </div>
               </div>
-             
-              <button className="btn btn-fa btn-danger border-0 rounded-0" type="submit">
+
+              <button
+                className="btn btn-fa btn-danger border-0 rounded-0"
+                type="submit"
+              >
                 Continue to checkout
               </button>
             </form>
@@ -412,4 +483,3 @@ const Checkout = () => {
 };
 
 export default Checkout;
-

@@ -86,7 +86,7 @@ export const updateStorageItemSize = (key, userId, itemId, newSize) => {
 };
 
 
-export const storeOrderLocally = (userId, items, totalAmount, promoCode, calculatedDeliveryFee, subtotal, promoCodes) => {
+export const storeOrderLocally = (userId, items, totalAmount, promoCode, calculatedDeliveryFee, subtotal, promoCodes,address) => {
   const orders = JSON.parse(localStorage.getItem("orders")) || {};
   const orderNumber = generateOrderNumber(); // Generate a random order number
   // const promoCodes = useSelector((state) => state.delivery.promoCodes);
@@ -105,6 +105,7 @@ export const storeOrderLocally = (userId, items, totalAmount, promoCode, calcula
     promoCode: promoCode, // Include promo code in the order details
     calculatedDeliveryFee: calculatedDeliveryFee,
     subtotal: subtotal,
+    address:address,
   };
 
   if (!orders[userId]) {

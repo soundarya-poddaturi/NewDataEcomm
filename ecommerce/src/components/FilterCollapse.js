@@ -1,7 +1,8 @@
+// src/FilterCollapse.js
 import React from "react";
 import { Button, Collapse } from "react-bootstrap";
 import { FaStar } from 'react-icons/fa';
-
+import "./style.css"
 const FilterCollapse = ({
   title,
   items,
@@ -36,7 +37,7 @@ const FilterCollapse = ({
       </div>
 
       <Collapse in={showFilter}>
-        <div id={`${title.toLowerCase()}Filter`} className="my-3">
+        <div id={`${title.toLowerCase()}Filter`} className="filter-collapse-content my-3 px-5">
           {title.toLowerCase() === "rating" && (
             <div className="d-flex align-items-center justify-content-center">
               {[...Array(5)].map((_, index) => (
@@ -51,9 +52,9 @@ const FilterCollapse = ({
           {title.toLowerCase() !== "rating" && !customComponent && (
             <>
               {items.map((item, index) => (
-                <div key={index} className="form-check">
+                <div key={index} className="form-check ">
                   <input
-                    className="form-check-input"
+                    className="form-check-input border-dark"
                     type="checkbox"
                     id={`${title}${index}`}
                     checked={selectedItems.includes(item)}

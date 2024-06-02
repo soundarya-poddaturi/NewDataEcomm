@@ -4,6 +4,7 @@ import axios from "axios";
 import { setCategories } from '../reduxtoolkit/categoriesSlice';
 import { useDispatch, useSelector } from 'react-redux'; 
 import './style.css'; 
+import ScrollComponent from "./ScrollComponent";
 
 const Categories = () => {
   const dispatch = useDispatch();
@@ -27,15 +28,17 @@ const Categories = () => {
   };
 
   return (
+    <ScrollComponent threshold={0.4} className="my-scroll-component">
     <div className="container mt-5 mb-5">
       <div className="row">
         {categories.map((category, index) => (
-          <div key={category} className="col-12 col-md-6">
+          <div key={category} className="col-md-4 col-sm-12">
             <Link to={`/products/category/${category}`} className="text-decoration-none" onClick={scrollToTop}>
               <div
                 className="text-white text-center mb-4 position-relative cat category-card"
                 style={{
                   minHeight: "300px",
+                  
                   backgroundImage: `url(assets/images/category/cat-${index + 1}.jpg)`,
                   backgroundSize: "cover",
                 }}
@@ -50,6 +53,7 @@ const Categories = () => {
         ))}
       </div>
     </div>
+     </ScrollComponent>
   );
 };
 
