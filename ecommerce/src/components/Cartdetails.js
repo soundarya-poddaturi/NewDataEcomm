@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
 const Cartdetails = ({ items }) => {
   const totalQuantity = items.reduce((total, item) => total + item.quantity, 0);
@@ -8,7 +9,7 @@ const Cartdetails = ({ items }) => {
   const promoCodes = useSelector((state) => state.delivery.promoCodes); // Get promo codes from Redux store
   const deliveryFee = useSelector((state) => state.delivery.deliveryFee);
  
-
+  console.log(items);
   let total = subtotal;
 
   // Apply promo code discount if applicable
@@ -25,14 +26,28 @@ const Cartdetails = ({ items }) => {
   const itemList = (item) => (
     <li className="list-group-item d-flex justify-content-between py-3 rounded-0" key={item.id}>
       <div className="title-container me-4">
-        <h6 className="mb-0">{item.title}</h6>
+        <h6 className="mb-0 d-flex ">
+          <div >{item.brand}</div>
+          <div className='ms-4'>{item.selectedSize}</div>
+          </h6>
+          <NavLink
+                              to={`products/${item.id}`}
+                              className="text-body  d-block"
+                              style={{
+                                display: "inline-block",
+                                maxWidth: "100%",
+                              }}
+                            >
+                              {item && item.title}
+                            </NavLink>
       </div>
+      
       <span className="text-muted">${item.price * item.quantity}</span>
     </li>
   );
 
   return (
-    <div className=" mb-3 mx-2">
+    <div className=" mb-3 mx-2  cart-details-container">
       <div className="card-body">
         <h4 className="card-title d-flex justify-content-between align-items-center mb-3">
           <span className="text-danger">Your cart</span>

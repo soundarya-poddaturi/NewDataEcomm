@@ -84,7 +84,7 @@ const OrderDetails = () => {
   };
 
   return (
-    <div className="mx-5 my-5 card2 border-0 border-none">
+    <div className="mx-lg-4 my-5 card2 border-0 border-none">
       {orders.map((order, orderIndex) => (
         <div
           key={orderIndex}

@@ -32,13 +32,14 @@
   color: #fff !important;
 }
 .card1 .logos {
-  transition: transform 0.2s ease; /* Add transition effect for translation */
-  /* background-color: antiquewhite; */
+  height: 44px;
+  ; /* Add transition effect for translation */
+ 
 }
 
 .card1:hover .logos {
-  transform: translateY(-26px); /* Translate the container along the positive x-axis */
-  /* background-color:rgb(128, 128, 128,0.5) */
+  /* transform: translateY(-16px); Translate the container along the positive x-axis */
+  background-color:#eae9e7
 
 }
 .fa-visible
@@ -74,9 +75,7 @@
     transition: transform 0.3s ease; /* Add transition effect */
   }
   
-  .card1:hover .card-img-top {
-    transform: scale(0.9); /* Increase scale on hover (1.1 is 110% of original size) */
-  }
+   
   .card-bg-img {
     transition: transform 0.3s ease;
 }
@@ -253,7 +252,7 @@ box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
 .size-options {
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 20px;
+  /* margin-bottom: ; */
 }
 
 /* Individual size option */
@@ -393,4 +392,16 @@ input[type=range]::-webkit-slider-thumb {
 .font
 {
   font-size: larger;
+}
+.cart-details-container {
+  max-width: 500px; /* Set a fixed width for larger screens */
+  width: 100%; /* Make it responsive */
+  margin: auto; /* Center the container */
+  /* text-wrap:wrap; */
+}
+
+@media (max-width: 576px) {
+  .cart-details-container {
+    max-width: 100%; /* Make it take full width on small screens */
+  }
 }

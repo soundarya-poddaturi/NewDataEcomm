@@ -78,34 +78,34 @@ const Profile = () => {
               className="container bg-body-light text-gray card2"
               style={{ maxWidth: "600px" }}
             >
-              <h4 className="text-center py-4">Profile Details</h4>
-              <div className="d-flex flex-row bd-highlight justify-content-between mb-1 px-5 py-3 bg-light border-dark">
+              <h4 className="text-center py-4 ">Profile Details</h4>
+              <div className="d-flex flex-row bd-highlight justify-content-between mb-1 px-5 py-3 bg-light border-dark text-capitalize">
                 <div className="p-2 bd-highlight">Username</div>
                 <div className="p-2 bd-highlight">{user.username}</div>
               </div>
-              <div className="d-flex flex-row bd-highlight justify-content-between mb-1 px-5 py-3 bg-light border-dark">
+              <div className="d-flex flex-row bd-highlight justify-content-between mb-1 px-5 py-3 bg-light border-dark text-capitalize">
                 <div className="p-2 bd-highlight">Email</div>
                 <div className="p-2 bd-highlight">{user.email}</div>
               </div>
-              <div className="d-flex flex-row bd-highlight justify-content-between mb-1 px-5 py-3 bg-light border-dark">
+              <div className="d-flex flex-row bd-highlight justify-content-between mb-1 px-5 py-3 bg-light border-dark text-capitalize">
                 <div className="p-2 bd-highlight">Name</div>
                 <div className="p-2 bd-highlight">
                   {user.name.firstname} {user.name.lastname}
                 </div>
               </div>
-              <div className="d-flex flex-row bd-highlight justify-content-between mb-1 px-5 py-3 bg-light border-dark">
+              <div className="d-flex flex-row bd-highlight justify-content-between mb-1 px-5 py-3 bg-light border-dark text-capitalize">
                 <div className="p-2 bd-highlight">Phone</div>
                 <div className="p-2 bd-highlight">{user.phone}</div>
               </div>
-              <div className="d-flex flex-row bd-highlight justify-content-between mb-1 px-5 py-3 bg-light border-dark">
+              <div className="d-flex flex-row bd-highlight justify-content-between mb-1 px-5 py-3 bg-light border-dark text-capitalize">
                 <div className="p-2 bd-highlight">Street</div>
                 <div className="p-2 bd-highlight">{user.address.street}</div>
               </div>
-              <div className="d-flex flex-row bd-highlight justify-content-between mb-1 px-5 py-3 bg-light border-dark">
+              <div className="d-flex flex-row bd-highlight justify-content-between mb-1 px-5 py-3 bg-light border-dark text-capitalize">
                 <div className="p-2 bd-highlight">City</div>
                 <div className="p-2 bd-highlight">{user.address.city}</div>
               </div>
-              <div className="d-flex flex-row bd-highlight justify-content-between mb-4 px-5 py-3 bg-light border-dark">
+              <div className="d-flex flex-row bd-highlight justify-content-between mb-4 px-5 py-3 bg-light border-dark text-capitalize">
                 <div className="p-2 bd-highlight">Zipcode</div>
                 <div className="p-2 bd-highlight">{user.address.zipcode}</div>
               </div>

@@ -109,25 +109,31 @@ const Cart = () => {
                 SubTotal: ${cartItem.price * cartItem.quantity}
               </p>
             </div>
+            <div className="centering d-flex justify-content-around justify-content-lg-start">
+              <div>
+            {cartItem.subcategories.sizes && (
+              <select
+                className="form-select mb-3 w-lg-50  rounded-0 border-dark "
+                value={cartItem.selectedSize || cartItem.subcategories.sizes[0]}
+                onChange={(e) => handleSizeChange(cartItem.id, e.target.value)}
+              >
+                <option value="">Select Size</option>
+                {cartItem.subcategories.sizes.map((size, index) => (
+                  <option key={index} value={size}>
+                    {size}
+                  </option>
+                ))}
+              </select>
+              
+            )}
+            </div>
+            </div>
           </div>
           <div className="col-md-3 col-sm-12 d-flex flex-column align-items-center justify-content-evenly">
             {/* Remove and quantity adjustment column */}
+           
             <div className="d-flex align-items-center justify-content-center mb-3">
               <div className="d-flex align-items-center justify-content-center">
-              {cartItem.subcategories.sizes &&
-                <select
-                  className="form-select mb-3"
-                  value={cartItem.selectedSize || cartItem.subcategories.sizes[0]}
-                  onChange={(e) => handleSizeChange(cartItem.id, e.target.value)}
-                >
-                  <option value="">Select Size</option>
-                  {cartItem.subcategories.sizes.map((size, index) => (
-                    <option key={index} value={size}>
-                      {size}
-                    </option>
-                  ))}
-                </select>}
-
                 <div
                   className="btn btn-items btn-items-decrease"
                   onClick={() =>
@@ -222,7 +228,7 @@ const Cart = () => {
                   >
                     <NavLink
                       to="/checkout"
-                      className="btn btn-danger mb-5 rounded-0 mx-auto"
+                      className="btn btn-danger  rounded-0 mx-auto"
                     >
                       Proceed To checkout
                     </NavLink>

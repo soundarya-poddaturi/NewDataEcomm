@@ -1,192 +1,28 @@
 const Data = [
     {
-        "id": 1,
-        "title": "XJARVIS Black UV Tan Sunblock protection with Thumb Hole Arm Sleeves, Outdoor Indoor Use Unisex Arm Sleeve for Men Women Children with Compression & Cooling Effect",
-        "price": 109.95,
-        "description": "COOLING & SUN PROTECTION: Ultimate cooling & sun protection to block out over 98% of harmful UV rays, the Xjarvis Outdoors' Cooling Sun Sleeves are more than your average sun arm sleeves for men & women.The sleeves are made from Polyamide and spandex, which is breathable. It's flexible stretchable, and adjustable. You can wear the pair with ease and adjust them to fit the shape of your hand adjust as per your arm shape. Arm sleeve men & women bike riding, cricket hand sleeves, hand sleeves for boys.",
-        "category": "Accessories",
-        "image": ["/images/acc001.jpg","/images/acc002.jpg"],
-        "rating": {
-            "rate": 3.9,
-            "count": 120
-        },
-        "brand": "XJARVIS",
-        "discount_percentage": 0,
-        "delivery_time": "2-3 business days",
-        "subcategories": {
-            "fabric_type": "Polyester",
-            "type":"ArmSleeves",
-            "colors": ["Black"],
-            
-        }
-    },
-    {
-        "id": 2,
-        "title": "Casual Shirt for Men|| Shirt for Men|| Men Stylish Shirt (Rib-Shirt)",
-        "price": 22.3,
-        "description": "Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.",
+        "id": 21,
+        "title": "Super Soft Round Neck Solid T-Shirt: Regular Fit",
+        "price": 29,
+        "description": "Our Pace collection is made from super combed cotton that's breathable and utterly smooth at the same time. It feels super-soft and gentle against the skin.The super combed cotton fabric is moisture absorbing for a breathable feel all day.",
         "category": "Men",
-        "image": ["/images/m001.jpg","/images/m000.jpg","/images/m002.jpg","/images/m003.jpg"],
+        "image": ["/images/m83.jpg","/images/m82.jpg"],
         "rating": {
-            "rate": 4.1,
-            "count": 259
+            "rate": 2.9,
+            "count": 250
         },
-        "brand": "Lymio",
-        "discount_percentage": 51,
+        "brand": "Allen Solly",
+        "discount_percentage": 0,
         "delivery_time": "1-2 business days",
-        "subcategories": {
-            "fabric_type": "Polyester",
-            "fit": "Regular Fit",
-            "colors": ["Black"],
-            "sizes": ["S", "M", "L"],
-            "Neckline":"Collar",
-            "Sleeve_Length":"Long Sleeve",
-            "type":"Shirt",
-        }
-    },
-    {
-        "id": 3,
-        "title": "Quilted Hooded Winter Jackets for Men & Boys Full Sleeve Mens Jacket Monsoon Jackets for Men All Weather ",
-        "price": 55.99,
-        "description": "Our Bomber Jacket is engineered to shield you from the elements. Its wind-resistant and water-repellent features ensure you stay comfortable and dry, making it a reliable companion during unexpected weather changes. The versatile nature of our Bomber Jacket allows you to effortlessly transition between seasons, providing you with a stylish layering option whether it's a chilly autumn evening or a crisp spring morning.",
-        "category": "Men",
-        "image": ["/images/m51.jpg","/images/m52.jpg","/images/m53.jpg"],
-        "rating": {
-            "rate": 4.7,
-            "count": 500
-        },
-        "brand": "BoldFit",
-        "discount_percentage": 15,
-        "delivery_time": "3-5 business days",
-        "subcategories": {
-            "fabric_type": "Polyester",
-            "fit": "Regular",
-            "colors": ["grey"],
-            "sizes": ["M", "L", "XL"],
-            "Sleeve_Length":"Full-Sleeve",
-            "type":"Jacket",
-            "Neckline":"Semi-Collar",
-        }
-    },
-    {
-        "id": 4,
-        "title": "Men's Solid Slim Fit Shirt",
-        "price": 15.99,
-        "description": "",
-        "category": "Men",
-        "image": ["/images/m41.jpg","/images/m42.jpg","/images/m43.jpg"],
-        "rating": {
-            "rate": 5,
-            "count": 430
-        },
-        "brand": "Levis",
-        "discount_percentage": 0,
-        "delivery_time": "2-4 business days",
         "subcategories": {
             "fabric_type": "Cotton",
-            "fit": "Slim",
-            
-            "colors": ["Black", "gray", "white"],
+            "fit": "Regular Fit",
+            "color": ["Violet"],
             "sizes": ["S", "M", "L"],
-            "Sleeve_Length":"Full-Sleeve",
-            "type":"Shirt"
+            "Neckline":"Round",
+            "Sleeve_Length":"Half Sleeve",
+            "type":"T-Shirt",
         }
-    },
-    {
-        "id": 5,
-        "title": "John Hardy Women's Legends Naga Gold & Silver Dragon Station Chain Bracelet",
-        "price": 695,
-        "description": "From our Legends Collection, the Naga was inspired by the mythical water dragon that protects the ocean's pearl. Wear facing inward to be bestowed with love and abundance, or outward for protection.",
-        "category": "Accessories",
-        "image": ["/images/acc1.jpg"],
-        "rating": {
-            "rate": 4.6,
-            "count": 400
-        },
-        "brand": "John Hardy",
-        "discount_percentage": 13,
-        "delivery_time": "2-3 business days",
-        "subcategories": {
-            "colors": ["Silver"],
-            "type":"Bracelets"
-        }
-    },
-    {
-        "id": 6,
-        "title": "Solid Gold Petite Micropave ",
-        "price": 168,
-        "description": "Satisfaction Guaranteed. Return or exchange any order within 30 days.Designed and sold by Hafeez Center in the United States. Satisfaction Guaranteed. Return or exchange any order within 30 days.",
-        "category": "Accessories",
-        "image": ["/images/acc2.jpg"],
-        "rating": {
-            "rate": 3.9,
-            "count": 70
-        },
-        "brand": "Hafeez Center",
-        "discount_percentage": 19,
-        "delivery_time": "3-4 business days",
-        "subcategories": {
-            "colors": ["gold"],
-            "type":"Ring"
 
-        }
-    },
-    {
-        "id": 7,
-        "title": "White Gold Plated Princess",
-        "price": 9.99,
-        "description": "Classic Created Wedding Engagement Solitaire Diamond Promise Ring for Her. Gifts to spoil your love more for Engagement, Wedding, Anniversary, Valentine's Day...",
-        "category": "Accessories",
-        "image": ["/images/acc3.jpg"],
-        "rating": {
-            "rate": 3,
-            "count": 400
-        },
-        "brand": "Princess",
-        "discount_percentage": 21,
-        "delivery_time": "1-2 business days",
-        "subcategories": {
-            "colors": ["Silver"],
-            "type":"Ring"
-        }
-    },
-    {
-        "id": 8,
-        "title": "Pierced Owl Rose Gold Plated Stainless Steel Double",
-        "price": 10.99,
-        "description": "Rose Gold Plated Double Flared Tunnel Plug Earrings. Made of 316L Stainless Steel",
-        "category": "Accessories",
-        "image": ["/images/acc4.jpg"],
-        "rating": {
-            "rate": 1.9,
-            "count": 100
-        },
-        "brand": "Pierced Owl",
-        "discount_percentage": 14,
-        "delivery_time": "2-3 business days",
-        "subcategories": {
-            "colors": ["Rose gold"],
-            "type":"Earrings"
-        }
-    },
-    {
-        "id": 9,
-        "title": "By Lensmart | Full Rim Wayfarer Branded Latest and Stylish Sunglasses | Polarized and 100% UV Protected | Men & Women | Large | VC S12644",
-        "price": 64,
-        "description": "Featuring Grey Full Rim Square made from Polycarbonate which is thinner and lighter than normal plastic making them ideal for both men & women.; FRAME SIZE:- Large | Frame width: 145mm | Frame Height: 45mm | Frame Dimensions: (57-16-145)mm .Lens Uv Protection Coating",
-        "category": "Accessories",
-        "image": ["/images/acc10.jpg","/images/acc11.jpg","/images/acc12.jpg","/images/acc13.jpg"],
-        "rating": {
-            "rate": 4.5,
-            "count": 320
-        },
-        "brand": "Vincent Eyeware",
-        "discount_percentage": 15,
-        "delivery_time": "1-3 business days",
-        "subcategories": {
-            "colors": ["Black"],
-            "type":"Sunglasses"
-        }
     },
     {
         "id": 10,
@@ -200,10 +36,10 @@ const Data = [
             "count": 470
         },
         "brand": "Fostelo",
-        "discount_percentage": 18,
+        "discount_percentage": 0,
         "delivery_time": "2-3 business days",
         "subcategories": {
-            "colors": ["Red"],
+            "color": ["Red"],
             "type":"Handbags"
         }
     },
@@ -222,10 +58,251 @@ const Data = [
         "discount_percentage": 10,
         "delivery_time": "1-2 business days",
         "subcategories": {
-            "colors": ["Pink"],
+            "color": ["Pink"],
             "type":"Handbags"
         }
     },
+    {
+        "id": 22,
+        "title": "Men's Solid Slim Fit Shirt",
+        "price": 15,
+        "description": "A wardrobe essential for the modern man. This shirt is designed with a slim fit cut, which means it is tailored closer to the body for a sleek, contemporary look. The solid color offers a versatile option that can be easily paired with various bottoms, from dress pants to casual jeans, making it suitable for both formal and casual occasions.",
+        "category": "Men",
+        "image": ["/images/m21.jpg","/images/m22.jpg","/images/m23.jpg"],
+        "rating": {
+            "rate": 5,
+            "count": 430
+        },
+        "brand": "Levis",
+        "discount_percentage": 10,
+        "delivery_time": "2-4 business days",
+        "subcategories": {
+            "fabric_type": "Cotton",
+            "fit": "Slim",
+            "color": ["Black"],
+            "sizes": ["S", "M", "L","XL"],
+            "Sleeve_Length":"Full-Sleeve",
+            "type":"Shirt"
+        }
+    },
+    {
+        "id": 23,
+        "title": "Men Cargo Pants || Men Cargo Pants Cotton || Cargos for Men (Cargo-17-20)",
+        "price": 29,
+        "description": "Preppy style and  designed with multiple pockets and a relaxed fit, often worn for outdoor activities or casual wear. These pants typically feature large side pockets, often with flap closures, as well as additional pockets on the thighs or back.",
+        "category": "Men",
+        "image": ["/images/m111.jpg","/images/m110.jpg","/images/m112.jpg"],
+        "rating": {
+            "rate": 2.9,
+            "count": 250
+        },
+        "brand": "Lymio",
+        "discount_percentage": 12,
+        "delivery_time": "1-2 business days",
+        "subcategories": {
+            "fabric_type": "Cotton",
+            "fit": "Relaxed",
+            "color": ["Beige"],
+            "sizes": ["S", "M", "L"],
+            
+            "Length":"Full",
+            "type":"BottomWear",
+        }
+
+    },
+    {
+        "id": 25,
+        "title": "Men Cargo Pants || Men Cargo Pants Cotton || Cargos for Men (Cargo-17-20)",
+        "price": 29,
+        "description": "Preppy style and  designed with multiple pockets and a relaxed fit, often worn for outdoor activities or casual wear. These pants typically feature large side pockets, often with flap closures, as well as additional pockets on the thighs or back.",
+        "category": "Men",
+        "image": ["/images/m120.jpg","/images/m121.jpg","/images/m122.jpg"],
+        "rating": {
+            "rate": 2.9,
+            "count": 250
+        },
+        "brand": "Lymio",
+        "discount_percentage": 0,
+        "delivery_time": "1-2 business days",
+        "subcategories": {
+            "fabric_type": "Cotton",
+            "fit": "Relaxed",
+            "color": ["Black"],
+            "sizes": ["S", "M", "L","XL"],
+            "Length":"Full",
+            "type":"BottomWear",
+        }
+
+    },
+    {
+        "id": 9,
+        "title": "By Lensmart | Full Rim Wayfarer Branded Latest and Stylish Sunglasses | Polarized and 100% UV Protected | Men & Women | Large | VC S12644",
+        "price": 64,
+        "description": "Featuring Grey Full Rim Square made from Polycarbonate which is thinner and lighter than normal plastic making them ideal for both men & women.; FRAME SIZE:- Large | Frame width: 145mm | Frame Height: 45mm | Frame Dimensions: (57-16-145)mm .Lens Uv Protection Coating",
+        "category": "Accessories",
+        "image": ["/images/acc10.jpg","/images/acc11.jpg","/images/acc12.jpg","/images/acc13.jpg"],
+        "rating": {
+            "rate": 4.5,
+            "count": 320
+        },
+        "brand": "Vincent Eyeware",
+        "discount_percentage": 45,
+        "delivery_time": "1-3 business days",
+        "subcategories": {
+            "color": ["Black"],
+            "type":"Sunglasses"
+        }
+    },
+    {
+        "id": 1,
+        "title": "XJARVIS Black UV Tan Sunblock protection with Thumb Hole Arm Sleeves, Outdoor Indoor Use Unisex Arm Sleeve for Men Women Children with Compression & Cooling Effect",
+        "price": 109.95,
+        "description": "COOLING & SUN PROTECTION: Ultimate cooling & sun protection to block out over 98% of harmful UV rays, the Xjarvis Outdoors' Cooling Sun Sleeves are more than your average sun arm sleeves for men & women.The sleeves are made from Polyamide and spandex, which is breathable. It's flexible stretchable, and adjustable. You can wear the pair with ease and adjust them to fit the shape of your hand adjust as per your arm shape. Arm sleeve men & women bike riding, cricket hand sleeves, hand sleeves for boys.",
+        "category": "Accessories",
+        "image": ["/images/acc001.jpg","/images/acc002.jpg"],
+        "rating": {
+            "rate": 3.9,
+            "count": 120
+        },
+        "brand": "XJARVIS",
+        "discount_percentage": 0,
+        "delivery_time": "2-3 business days",
+        "subcategories": {
+            "fabric_type": "Polyester",
+            "type":"ArmSleeves",
+            "color": ["Black"],
+            
+        }
+    },
+    
+    {
+        "id": 2,
+        "title": "Casual Shirt for Men|| Shirt for Men|| Men Stylish Shirt (Rib-Shirt)",
+        "price": 22.3,
+        "description": "Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.",
+        "category": "Men",
+        "image": ["/images/m001.jpg","/images/m000.jpg","/images/m002.jpg","/images/m003.jpg"],
+        "rating": {
+            "rate": 4.1,
+            "count": 259
+        },
+        "brand": "Lymio",
+        "discount_percentage": 51,
+        "delivery_time": "1-2 business days",
+        "subcategories": {
+            "fabric_type": "Polyester",
+            "fit": "Regular Fit",
+            "color": ["Black"],
+            "sizes": ["S", "M", "L"],
+            "Neckline":"Collar",
+            "Sleeve_Length":"Long Sleeve",
+            "type":"Shirt",
+        }
+    },
+    {
+        "id": 3,
+        "title": "Quilted Hooded Winter Jackets for Men & Boys Full Sleeve Mens Jacket Monsoon Jackets for Men All Weather ",
+        "price": 55.99,
+        "description": "Our Bomber Jacket is engineered to shield you from the elements. Its wind-resistant and water-repellent features ensure you stay comfortable and dry, making it a reliable companion during unexpected weather changes. The versatile nature of our Bomber Jacket allows you to effortlessly transition between seasons, providing you with a stylish layering option whether it's a chilly autumn evening or a crisp spring morning.",
+        "category": "Men",
+        "image": ["/images/m51.jpg","/images/m52.jpg","/images/m53.jpg"],
+        "rating": {
+            "rate": 4.7,
+            "count": 500
+        },
+        "brand": "BoldFit",
+        "discount_percentage": 45,
+        "delivery_time": "3-5 business days",
+        "subcategories": {
+            "fabric_type": "Polyester",
+            "fit": "Regular",
+            "color": ["Gray"],
+            "sizes": ["M", "L", "XL"],
+            "Sleeve_Length":"Full-Sleeve",
+            "type":"Jacket",
+            "Neckline":"Semi-Collar",
+        }
+    },
+    
+    {
+        "id": 5,
+        "title": "John Hardy Women's Legends Naga Gold & Silver Dragon Station Chain Bracelet",
+        "price": 695,
+        "description": "From our Legends Collection, the Naga was inspired by the mythical water dragon that protects the ocean's pearl. Wear facing inward to be bestowed with love and abundance, or outward for protection.",
+        "category": "Accessories",
+        "image": ["/images/acc1.jpg"],
+        "rating": {
+            "rate": 4.6,
+            "count": 400
+        },
+        "brand": "John Hardy",
+        "discount_percentage": 13,
+        "delivery_time": "2-3 business days",
+        "subcategories": {
+            "color": ["Silver"],
+            "type":"Bracelets"
+        }
+    },
+    {
+        "id": 6,
+        "title": "Solid Gold Petite Micropave ",
+        "price": 168,
+        "description": "Satisfaction Guaranteed. Return or exchange any order within 30 days.Designed and sold by Hafeez Center in the United States. Satisfaction Guaranteed. Return or exchange any order within 30 days.",
+        "category": "Accessories",
+        "image": ["/images/acc2.jpg"],
+        "rating": {
+            "rate": 3.9,
+            "count": 70
+        },
+        "brand": "Hafeez Center",
+        "discount_percentage": 40,
+        "delivery_time": "3-4 business days",
+        "subcategories": {
+            "color": ["Gold"],
+            "type":"Ring"
+
+        }
+    },
+    {
+        "id": 7,
+        "title": "White Gold Plated Princess",
+        "price": 9.99,
+        "description": "Classic Created Wedding Engagement Solitaire Diamond Promise Ring for Her. Gifts to spoil your love more for Engagement, Wedding, Anniversary, Valentine's Day...",
+        "category": "Accessories",
+        "image": ["/images/acc3.jpg"],
+        "rating": {
+            "rate": 3,
+            "count": 400
+        },
+        "brand": "Princess",
+        "discount_percentage": 0,
+        "delivery_time": "1-2 business days",
+        "subcategories": {
+            "color": ["Silver"],
+            "type":"Ring"
+        }
+    },
+    {
+        "id": 8,
+        "title": "Pierced Owl Rose Gold Plated Stainless Steel Double",
+        "price": 10.99,
+        "description": "Rose Gold Plated Double Flared Tunnel Plug Earrings. Made of 316L Stainless Steel",
+        "category": "Accessories",
+        "image": ["/images/acc4.jpg"],
+        "rating": {
+            "rate": 1.9,
+            "count": 100
+        },
+        "brand": "Pierced Owl",
+        "discount_percentage": 14,
+        "delivery_time": "2-3 business days",
+        "subcategories": {
+            "color": ["Rose gold"],
+            "type":"Earrings"
+        }
+    },
+   
+   
     {
         "id": 12,
         "title": "Sunscreen Jacket 2.0 - Advanced Protection from Sun & Pollution - UPF 50+ Protection",
@@ -243,7 +320,7 @@ const Data = [
         "subcategories": {
             "type":"Jacket",
             "fit":"regular",
-            "colors": ["blue"],
+            "color": ["Blue"],
             "fabric_type":"Nylon",
             "Sleeve_Length":"Full-Sleeve",
             "sizes": ["S", "M", "L","XL"],
@@ -266,7 +343,7 @@ const Data = [
         "subcategories": {
             "fabric_type": "Cotton",
             "fit": "Regular Fit",
-            "colors": ["blue"],
+            "color": ["Blue"],
             "sizes": ["S", "M", "L"],
             "Neckline":"Round",
             "Sleeve_Length":"Half Sleeve",
@@ -285,12 +362,12 @@ const Data = [
             "count": 140
         },
         "brand": "HOUSE OF CHIC",
-        "discount_percentage": 17,
+        "discount_percentage": 47,
         "delivery_time": "2-4 business days",
         "subcategories": {
             "fabric_type": "Gorgette",
             "fit": "Regular Fit",
-            "colors": ["Multi"],
+            "color": ["Multi"],
             "sizes": ["S", "M", "L"],
             "Neckline":"Collar",
             "Sleeve_Length":"Full Sleeve",
@@ -303,19 +380,19 @@ const Data = [
         "price": 56.99,
         "description": " Perfect to be a little cocktail dress for party or wedding event. It is also suitable for night clubbing, dating, birthday ,wedding,engagement and prom occasions as an elegant dress, a unique party dress.Solid/Plain | Closure: Zip | Type: A-line | Neckline: V Neck | Sleeve type: Bishop Sleeve | Sleeve length: Long Sleeve | Waist line: High Waist | Hem Shaped: Flared",
         "category": "Women",
-        "image": ["/images/w10.jpg","/images/w11.jpg","/images/w12.jpg"],
+        "image": ["/images/w11.jpg","/images/w10.jpg","/images/w12.jpg"],
         "rating": {
             "rate": 2.6,
             "count": 235
         },
         "brand": "Vivvli",
-        "discount_percentage": 15,
+        "discount_percentage": 0,
         "delivery_time": "1-3 business days",
         "subcategories": {
             "type":"Dress",
             "fabric_type": "Polyester",
             "Neckline" :"V Neck",
-            "colors": ["Black"],
+            "color": ["Black"],
             "sizes": ["S", "M", "L", "XL"],
             "Sleeve-Type":"Bishop",
             
@@ -339,7 +416,7 @@ const Data = [
             "type":"Dress",
             "fabric_type": "Rayon",
             "fit": "Regular",
-            "colors": ["Violet"],
+            "color": ["Violet"],
             "sizes": ["S", "M", "L", "XL"],
             "Sleeve-Type":"Full Sleeve"
         }
@@ -356,13 +433,13 @@ const Data = [
             "count": 679
         },
         "brand": "FZilcon",
-        "discount_percentage": 20,
+        "discount_percentage": 0,
         "delivery_time": "3-5 business days",
         "subcategories": {
             "type":"T-Shirt",
             "fabric_type": "Polyester",
             "fit": "Regular",
-            "colors": ["White"],
+            "color": ["White"],
             "sizes": ["S", "M", "L", "XL"],
             "Sleeve-Type":"Half sleeve",
             "Neckline":"Boat Neck",
@@ -386,36 +463,13 @@ const Data = [
             "type":"T-Shirt",
             "fabric_type": "Cotton",
             "fit": "Slim",
-            "colors": ["Black"],
+            "color": ["Black"],
             "sizes": ["S", "M", "L", "XL"],
             "Sleeve-Type":"Sleeveless",
             "Neckline":"Mandarin",
         }
     },
-    {
-        "id": 25,
-        "title": "Men Cargo Pants || Men Cargo Pants Cotton || Cargos for Men (Cargo-17-20)",
-        "price": 29,
-        "description": "Preppy style and  designed with multiple pockets and a relaxed fit, often worn for outdoor activities or casual wear. These pants typically feature large side pockets, often with flap closures, as well as additional pockets on the thighs or back.",
-        "category": "Men",
-        "image": ["/images/m120.jpg","/images/m121.jpg","/images/m122.jpg"],
-        "rating": {
-            "rate": 2.9,
-            "count": 250
-        },
-        "brand": "Lymio",
-        "discount_percentage": 12,
-        "delivery_time": "1-2 business days",
-        "subcategories": {
-            "fabric_type": "Cotton",
-            "fit": "Relaxed",
-            "colors": ["Black"],
-            "sizes": ["S", "M", "L","XL"],
-            "Length":"Full",
-            "type":"BottomWear",
-        }
-
-    },
+    
     {
         "id": 19,
         "title": "Solid Casual Zipper Sweatshirt for Winter",
@@ -428,16 +482,40 @@ const Data = [
             "count": 146
         },
         "brand": "LLL FASHION",
-        "discount_percentage": 18,
+        "discount_percentage": 42,
         "delivery_time": "1-3 business days",
         "subcategories": {
             "type":"Sweatshirts",
             "fabric_type": "Cotton",
             "fit": "Slim",
-            "colors": ["Blue"],
+            "color": ["Blue"],
             "sizes": ["S", "M", "L", "XL"],
             "Sleeve-Type":"Full sleeve",
             "Neckline":"Hooded",
+        }
+    },
+    {
+        "id": 4,
+        "title": "Men's Solid Slim Fit Shirt",
+        "price": 15.99,
+        "description": "A wardrobe essential for the modern man. This shirt is designed with a slim fit cut, which means it is tailored closer to the body for a sleek, contemporary look. The solid color offers a versatile option that can be easily paired with various bottoms, from dress pants to casual jeans, making it suitable for both formal and casual occasions.",
+        "category": "Men",
+        "image": ["/images/m41.jpg","/images/m42.jpg","/images/m43.jpg"],
+        "rating": {
+            "rate": 5,
+            "count": 430
+        },
+        "brand": "Levis",
+        "discount_percentage": 0,
+        "delivery_time": "2-4 business days",
+        "subcategories": {
+            "fabric_type": "Cotton",
+            "fit": "Slim",
+            
+            "color": ["Orange"],
+            "sizes": ["S", "M", "L"],
+            "Sleeve_Length":"Full-Sleeve",
+            "type":"Shirt"
         }
     },
     {
@@ -452,90 +530,20 @@ const Data = [
             "count": 145
         },
         "brand": "DANVOUY",
-        "discount_percentage": 20,
+        "discount_percentage": 0,
         "delivery_time": "2-3 business days",
         "subcategories": {
             "type":"Sweatshirts",
             "fabric_type": "Cotton",
             "fit": "Regular",
-            "colors": ["Gray"],
+            "color": ["Gray"],
             "sizes": ["S", "M", "L", "XL"],
             "Sleeve-Type":"Full sleeve",
             "Neckline":"Round Neck",
         }
-    },{
-        "id": 21,
-        "title": "Super Soft Round Neck Solid T-Shirt: Regular Fit",
-        "price": 29,
-        "description": "Our Pace collection is made from super combed cotton that's breathable and utterly smooth at the same time. It feels super-soft and gentle against the skin.The super combed cotton fabric is moisture absorbing for a breathable feel all day.",
-        "category": "Men",
-        "image": ["/images/m82.jpg","/images/m81.jpg","/images/m83.jpg"],
-        "rating": {
-            "rate": 2.9,
-            "count": 250
-        },
-        "brand": "Allen Solly",
-        "discount_percentage": 12,
-        "delivery_time": "1-2 business days",
-        "subcategories": {
-            "fabric_type": "Cotton",
-            "fit": "Regular Fit",
-            "colors": ["Violet"],
-            "sizes": ["S", "M", "L"],
-            "Neckline":"Round",
-            "Sleeve_Length":"Half Sleeve",
-            "type":"T-Shirt",
-        }
-
     },
-    {
-        "id": 22,
-        "title": "Men's Solid Slim Fit Shirt",
-        "price": 15,
-        "description": "",
-        "category": "Men",
-        "image": ["/images/m21.jpg","/images/m22.jpg","/images/m23.jpg"],
-        "rating": {
-            "rate": 5,
-            "count": 430
-        },
-        "brand": "Levis",
-        "discount_percentage": 10,
-        "delivery_time": "2-4 business days",
-        "subcategories": {
-            "fabric_type": "Cotton",
-            "fit": "Slim",
-            "colors": ["Black"],
-            "sizes": ["S", "M", "L","XL"],
-            "Sleeve_Length":"Full-Sleeve",
-            "type":"Shirt"
-        }
-    },
-    {
-        "id": 23,
-        "title": "Men Cargo Pants || Men Cargo Pants Cotton || Cargos for Men (Cargo-17-20)",
-        "price": 29,
-        "description": "Preppy style and  designed with multiple pockets and a relaxed fit, often worn for outdoor activities or casual wear. These pants typically feature large side pockets, often with flap closures, as well as additional pockets on the thighs or back.",
-        "category": "Men",
-        "image": ["/images/m110.jpg","/images/m111.jpg","/images/m112.jpg"],
-        "rating": {
-            "rate": 2.9,
-            "count": 250
-        },
-        "brand": "Lymio",
-        "discount_percentage": 12,
-        "delivery_time": "1-2 business days",
-        "subcategories": {
-            "fabric_type": "Cotton",
-            "fit": "Relaxed",
-            "colors": ["Beige"],
-            "sizes": ["S", "M", "L"],
-            
-            "Length":"Full",
-            "type":"BottomWear",
-        }
-
-    },
+    
+    
     {
         "id": 24,
         "title": "Regular Fit Solid Casual Sleeveless Shirt",
@@ -548,13 +556,13 @@ const Data = [
             "count": 235
         },
         "brand": "Vivvli",
-        "discount_percentage": 15,
+        "discount_percentage": 0,
         "delivery_time": "1-3 business days",
         "subcategories": {
             "type":"Shirt",
             "fabric_type": "Rayon",
             "Neckline" :"Collar",
-            "colors": ["Red"],
+            "color": ["Red"],
             "sizes": ["S", "M", "L", "XL"],
             "Sleeve-Type":"Sleeveless", 
         }
@@ -577,7 +585,7 @@ const Data = [
             "type":"T-Shirt",
             "fabric_type": "Cotton",
             "Neckline" :"round",
-            "colors": ["Beige"],
+            "color": ["Beige"],
             "sizes": ["S", "M", "L", "XL"],
             "Sleeve-Type":"Half Sleeve", 
         }
@@ -600,7 +608,7 @@ const Data = [
             "type":"T-Shirt",
             "fabric_type": "Cotton",
             "Neckline" :"round",
-            "colors": ["Red"],
+            "color": ["Red"],
             "sizes": ["S", "M", "L", "XL"],
             "Sleeve-Type":"Half Sleeve", 
         }

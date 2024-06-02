@@ -302,7 +302,7 @@ const Product = ({
       <div
         className="card1 my-2 p-0 "
         key={item.id}
-        style={{ width: "17rem", height: "30rem" }}
+        style={{ width: "18rem", height: "24rem" }}
       >
         <div className="text-decoration-none text-dark">
           {item.discount_percentage > 0 && (
@@ -317,8 +317,8 @@ const Product = ({
           <div className=" my-2 ">
             <Link
               to={`/products/${item.id}`}
-              className=""
-              style={{ height: "200px",width:"18rem" }}
+              className="d-flex justify-content-center align-items-center"
+              style={{ height: "200px" }}
             >
               <img
                 src={`${baseURL}${item.image[0]}`} 
@@ -326,14 +326,14 @@ const Product = ({
                 alt={item.title}
                 style={{
                   backgroundSize: "cover",
-                  width: "17rem",
-                  height: "20rem",
-                 
+                  width: "230px",
+                  height: "200px",
+                  backgroundColor:"gray"
                 }}
               />
             </Link>
 
-            <div className="card-body  py-2 px-3 mb-2">
+            <div className="card-body  py-3 px-3">
               <div className="d-flex card-title justify-content-between align-items-baseline py-0" style={{ height: '30px' }}>
                 <div>
                   <p className="fw-semibold fs-5 overflow-hidden text-truncate">
@@ -341,8 +341,8 @@ const Product = ({
                   </p>
                 </div>
                 <div>
-                  <p className="overflow-hidden d-flex align-items-center fw-semibold ">
-                    ({item.rating.rate}) <FaStar className="" />
+                  <p className="overflow-hidden ">
+                    ({item.rating.rate}) <FaStar />
                   </p>
                 </div>
               </div>
@@ -364,11 +364,9 @@ const Product = ({
                 )}
                 <span className="lead mt-2 fw-bold">${item.price}</span>
               </div>
-              
-
-
             </div>
-            <div className="d-flex flex-row align-items-center p-0 justify-content-center logos ">
+          </div>
+          <div className="d-flex flex-row align-items-center p-0 justify-content-center logos">
             <NavLink
               to="#"
               className="nav-link inner p-2"
@@ -387,8 +385,6 @@ const Product = ({
               <span className={`fa ${heartIconClassName}`}></span>
             </NavLink>
           </div>
-          </div>
-          
         </div>
       </div>
     );
@@ -418,7 +414,7 @@ const Product = ({
           <div className="row justify-content-start">
             {currentItems.map((item) => (
               <div
-                className="col-lg-4 col-md-6 col-sm-6 col-xs-12 mb-5"
+                className="col-lg-4 col-md-6 col-sm-6 col-xs-12 mb-10"
                 key={item.id}
               >
                 {cardItem(item, isAuthenticated, wishlistItems)}

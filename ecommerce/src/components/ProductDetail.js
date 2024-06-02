@@ -25,6 +25,7 @@ const ProductDetail = () => {
   const navigate = useNavigate();
   const userId = auth.user?.id;
   const baseURL = "http://localhost:5000";
+  
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -87,13 +88,15 @@ const ProductDetail = () => {
       const sizeWarning = document.createElement("p");
       sizeWarning.textContent = "Please choose a size";
       sizeWarning.style.color = "red";
+     
+
       sizeContainer.parentNode.insertBefore(
         sizeWarning,
         sizeContainer.nextSibling
       );
       setTimeout(() => {
         sizeWarning.remove();
-      }, 3000);
+      }, 8000);
 
       return false;
     }
@@ -269,20 +272,25 @@ const ProductDetail = () => {
                   </p>
                   {product.subcategories &&
                     Object.keys(product.subcategories).length > 0 && (
-                      <div className="card">
-                        <div className="card-header">
-                          <strong>Product Details</strong>
+                      <div className="">
+                        <div className="mb-3">
+                          <p className="fw-semibold">Product Details</p>
                         </div>
-                        <ul className="list-group list-group-flush">
+                        <div className="row">
                           {Object.entries(product.subcategories)
                             .filter(([key]) => key !== "sizes") // Filter out 'sizes' key
                             .map(([key, value], index) => (
-                              <li className="list-group-item" key={index}>
-                                <strong>{key.replace(/_/g, " ")}:</strong>{" "}
-                                {value}
-                              </li>
+                              <div className="col-md-6" key={index}> {/* Use col-md-6 to split into two columns on medium screens and above */}
+                                <div className="list-group-item">
+                                  <strong className="text-capitalize">{key.replace(/_/g, " ")}</strong>
+                                  <hr className="w-50 m-0"/>
+                                  <div className="mb-3 text-capitalize">{value}</div>
+                                </div>
+                              </div>
                             ))}
-                        </ul>
+                        </div>
+
+
                       </div>
                     )}
                 </div>

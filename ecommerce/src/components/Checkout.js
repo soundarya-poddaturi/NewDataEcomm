@@ -18,6 +18,7 @@ const Checkout = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const navigate = useNavigate();
   const [promoCodeValid, setPromoCodeValid] = useState(true);
+  const [showAddressForm, setShowAddressForm] = useState(false);
   const promoCodes = useSelector((state) => state.delivery.promoCodes);
 
   let items = [];
@@ -59,53 +60,30 @@ const Checkout = () => {
     }
   }, [isAuthenticated, userId]);
 
-  const [formErrors, setFormErrors] = useState({});
-
-  const validateForm = (formData) => {
-    const errors = {};
-    if (!formData.get("firstName"))
-      errors.firstName = "First name is required.";
-    if (!formData.get("lastName")) errors.lastName = "Last name is required.";
-    if (!formData.get("address")) errors.address = "Address is required.";
-    if (!formData.get("country")) errors.country = "Country is required.";
-    if (!formData.get("state")) errors.state = "State is required.";
-    if (!formData.get("zip")) errors.zip = "Zip code is required.";
-    if (!formData.get("ccName")) errors.ccName = "Name on card is required.";
-    if (!formData.get("ccNumber"))
-      errors.ccNumber = "Credit card number is required.";
-    else if (!/^[0-9]{12}$/.test(formData.get("ccNumber")))
-      errors.ccNumber = "Credit card number should be 12 digits.";
-    if (!formData.get("ccExpiration"))
-      errors.ccExpiration = "Expiration date is required.";
-    else if (!/^(0[1-9]|1[0-2])\/\d{4}$/.test(formData.get("ccExpiration")))
-      errors.ccExpiration = "Expiration date should be in MM/YYYY format.";
-    if (!formData.get("ccCvv")) errors.ccCvv = "CVV is required.";
-    else if (!/^[0-9]{3}$/.test(formData.get("ccCvv")))
-      errors.ccCvv = "CVV should be 3 digits.";
-    return errors;
-  };
-
   const handleCheckout = (e) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
-    const errors = validateForm(formData);
-
-    if (Object.keys(errors).length > 0) {
-      setFormErrors(errors);
-      const firstErrorElement = document.querySelector(".is-invalid");
-      if (firstErrorElement) {
-        firstErrorElement.scrollIntoView({
-          behavior: "smooth",
-          block: "center",
-        });
-      }
+    const form = e.target;
+    if (!form.checkValidity()) {
+      form.classList.add('was-validated');
       return;
     }
+    const ccNumber = document.getElementById('cc-number').value;
+    const ccCvv = document.getElementById('cc-cvv').value;
+  
+    // Check if the credit card number is 12 digits
+    const isValidCcNumber = /^\d{12}$/.test(ccNumber);
+  
+    // Check if the CVV is 3 digits
+    const isValidCvv = /^\d{3}$/.test(ccCvv);
+  
+    if (!isValidCcNumber || !isValidCvv) {
+      // Display an error message or perform any other action
+      alert('Invalid credit card number or CVV. Please check and try again.');
+      return;
+    }
+    
 
-    const subtotal = items.reduce(
-      (acc, item) => acc + item.price * item.quantity,
-      0
-    );
+    const subtotal = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
     const calculatedDeliveryFee = subtotal < 100 ? deliveryFee : 0;
     let total = subtotal + calculatedDeliveryFee;
 
@@ -117,22 +95,12 @@ const Checkout = () => {
 
     if (checkoutItems === undefined) {
       dispatch(clearCart());
-      deleteStorageCartItem();
       cartItems.forEach((item) => {
         deleteStorageCartItem("cartItems", userId, item.id);
       });
     }
 
-    storeOrderLocally(
-      userId,
-      items,
-      total,
-      promoCode,
-      calculatedDeliveryFee,
-      subtotal,
-      promoCode
-    );
-
+    storeOrderLocally(userId, items, total, promoCode, calculatedDeliveryFee, subtotal, promoCode);
     dispatch(clearPromoCode());
     setPromoCode("");
 
@@ -141,11 +109,11 @@ const Checkout = () => {
 
   return (
     <>
-      <div className="container">
+      <div className="container p-0">
         <div className="row g-5 my-4 mx-4 flex-md-row flex-column-reverse">
-          <div className="col-md-7 col-lg-8">
-            <h4 className="mb-3">Billing address</h4>
-            {isAuthenticated && userAddress && (
+          <div className="col-md-7 col-lg-8 ps-0">
+            <h4 className="mb-3">Shipping address</h4>
+            {isAuthenticated && userAddress && !showAddressForm && (
               <div>
                 <p>
                   Address: {userAddress.street}, {userAddress.suite},{" "}
@@ -153,7 +121,19 @@ const Checkout = () => {
                 </p>
               </div>
             )}
-            {!isAuthenticated && (
+            <div className="form-check mb-3">
+              <input
+                type="checkbox"
+                className="form-check-input"
+                id="changeAddress"
+                checked={showAddressForm}
+                onChange={(e) => setShowAddressForm(e.target.checked)}
+              />
+              <label className="form-check-label" htmlFor="changeAddress">
+                Change Address
+              </label>
+            </div>
+            {(!isAuthenticated || showAddressForm) && (
               <form
                 className="needs-validation"
                 onSubmit={handleCheckout}
@@ -166,16 +146,13 @@ const Checkout = () => {
                     </label>
                     <input
                       type="text"
-                      className={`form-control ${
-                        formErrors.firstName ? "is-invalid" : ""
-                      }`}
+                      className="form-control"
                       id="firstName"
-                      name="firstName"
                       placeholder=""
                       required
                     />
                     <div className="invalid-feedback">
-                      {formErrors.firstName}
+                      Valid first name is required.
                     </div>
                   </div>
                   <div className="col-sm-6">
@@ -184,16 +161,13 @@ const Checkout = () => {
                     </label>
                     <input
                       type="text"
-                      className={`form-control ${
-                        formErrors.lastName ? "is-invalid" : ""
-                      }`}
+                      className="form-control"
                       id="lastName"
-                      name="lastName"
                       placeholder=""
                       required
                     />
                     <div className="invalid-feedback">
-                      {formErrors.lastName}
+                      Valid last name is required.
                     </div>
                   </div>
                   <div className="col-12">
@@ -202,11 +176,8 @@ const Checkout = () => {
                     </label>
                     <input
                       type="email"
-                      className={`form-control ${
-                        formErrors.email ? "is-invalid" : ""
-                      }`}
+                      className="form-control"
                       id="email"
-                      name="email"
                       placeholder="you@example.com"
                     />
                     <div className="invalid-feedback">
@@ -219,15 +190,14 @@ const Checkout = () => {
                     </label>
                     <input
                       type="text"
-                      className={`form-control ${
-                        formErrors.address ? "is-invalid" : ""
-                      }`}
+                      className="form-control"
                       id="address"
-                      name="address"
                       placeholder="1234 Main St"
                       required
                     />
-                    <div className="invalid-feedback">{formErrors.address}</div>
+                    <div className="invalid-feedback">
+                      Please enter your shipping address.
+                    </div>
                   </div>
                   <div className="col-12">
                     <label htmlFor="address2" className="form-label">
@@ -237,7 +207,6 @@ const Checkout = () => {
                       type="text"
                       className="form-control"
                       id="address2"
-                      name="address2"
                       placeholder="Apartment or suite"
                     />
                   </div>
@@ -246,35 +215,29 @@ const Checkout = () => {
                     <label htmlFor="country" className="form-label">
                       Country
                     </label>
-                    <select
-                      className={`form-select ${
-                        formErrors.country ? "is-invalid" : ""
-                      }`}
-                      id="country"
-                      name="country"
-                      required
-                    >
-                      <option value="">Choose...</option>
-                      <option>United States</option>
-                    </select>
-                    <div className="invalid-feedback">{formErrors.country}</div>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="address2"
+                      placeholder="United States"
+                    />
+                    <div className="invalid-feedback">
+                      Please select a valid country.
+                    </div>
                   </div>
                   <div className="col-md-4">
                     <label htmlFor="state" className="form-label">
                       State
                     </label>
-                    <select
-                      className={`form-select ${
-                        formErrors.state ? "is-invalid" : ""
-                      }`}
-                      id="state"
-                      name="state"
-                      required
-                    >
-                      <option value="">Choose...</option>
-                      <option>California</option>
-                    </select>
-                    <div className="invalid-feedback">{formErrors.state}</div>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="address2"
+                      placeholder="State"
+                    />
+                    <div className="invalid-feedback">
+                      Please provide a valid state.
+                    </div>
                   </div>
                   <div className="col-md-3">
                     <label htmlFor="zip" className="form-label">
@@ -282,271 +245,132 @@ const Checkout = () => {
                     </label>
                     <input
                       type="text"
-                      className={`form-control ${
-                        formErrors.zip ? "is-invalid" : ""
-                      }`}
+                      className="form-control"
                       id="zip"
-                      name="zip"
                       placeholder=""
                       required
                     />
-                    <div className="invalid-feedback">{formErrors.zip}</div>
+                    <div className="invalid-feedback">Zip code required.</div>
                   </div>
                 </div>
               </form>
             )}
-            {/* Payment section */}
-            {!isAuthenticated && (
-              <>
-                <h4 className="my-4">Payment</h4>
-                <form
-                  className="needs-validation"
-                  onSubmit={handleCheckout}
-                  noValidate
-                >
-                  <div className="my-3">
-                    <div className="form-check">
-                      <input
-                        id="credit"
-                        name="paymentMethod"
-                        type="radio"
-                        className="form-check-input"
-                        checked
-                        required
-                      />
-                      <label className="form-check-label" htmlFor="credit">
-                        Credit card
-                      </label>
-                    </div>
-                    <div className="form-check">
-                      <input
-                        id="debit"
-                        name="paymentMethod"
-                        type="radio"
-                        className="form-check-input"
-                        required
-                      />
-                      <label className="form-check-label" htmlFor="debit">
-                        Debit card
-                      </label>
-                    </div>
-                    <div className="form-check">
-                      <input
-                        id="paypal"
-                        name="paymentMethod"
-                        type="radio"
-                        className="form-check-input"
-                        required
-                      />
-                      <label className="form-check-label" htmlFor="paypal">
-                        PayPal
-                      </label>
-                    </div>
-                  </div>
-                  <div className="row gy-3 my-4">
-                    <div className="col-md-6">
-                      <label htmlFor="cc-name" className="form-label">
-                        Name on card
-                      </label>
-                      <input
-                        type="text"
-                        className={`form-control ${
-                          formErrors.ccName ? "is-invalid" : ""
-                        }`}
-                        id="cc-name"
-                        name="ccName"
-                        placeholder=""
-                        required
-                      />
-                      <div className="invalid-feedback">
-                        {formErrors.ccName}
-                      </div>
-                    </div>
-                    <div className="col-md-6">
-                      <label htmlFor="cc-number" className="form-label">
-                        Credit card number
-                      </label>
-                      <input
-                        type="text"
-                        className={`form-control ${
-                          formErrors.ccNumber ? "is-invalid" : ""
-                        }`}
-                        id="cc-number"
-                        name="ccNumber"
-                        placeholder=""
-                        required
-                      />
-                      <div className="invalid-feedback">
-                        {formErrors.ccNumber}
-                      </div>
-                    </div>
-                    <div className="col-md-3">
-                      <label htmlFor="cc-expiration" className="form-label">
-                        Expiration
-                      </label>
-                      <input
-                        type="text"
-                        className={`form-control ${
-                          formErrors.ccExpiration ? "is-invalid" : ""
-                        }`}
-                        id="cc-expiration"
-                        name="ccExpiration"
-                        placeholder="MM/YYYY"
-                        required
-                      />
-                      <div className="invalid-feedback">
-                        {formErrors.ccExpiration}
-                      </div>
-                    </div>
-                    <div className="col-md-3">
-                      <label htmlFor="cc-cvv" className="form-label">
-                        CVV
-                      </label>
-                      <input
-                        type="text"
-                        className={`form-control ${
-                          formErrors.ccCvv ? "is-invalid" : ""
-                        }`}
-                        id="cc-cvv"
-                        name="ccCvv"
-                        placeholder=""
-                        required
-                      />
-                      <div className="invalid-feedback">{formErrors.ccCvv}</div>
-                    </div>
-                  </div>
-                </form>
-              </>
-            )}
-            {/* Conditional rendering based on authentication */}
-            {isAuthenticated && (
-              <form
-                className="needs-validation"
-                onSubmit={handleCheckout}
-                noValidate
-              >
-                {/* Payment form */}
-                <h4 className="my-4">Payment</h4>
-                <div className="my-3">
-                  <div className="form-check">
-                    <input
-                      id="credit"
-                      name="paymentMethod"
-                      type="radio"
-                      className="form-check-input"
-                      checked
-                      required
-                    />
-                    <label className="form-check-label" htmlFor="credit">
-                      Credit card
-                    </label>
-                  </div>
-                  <div className="form-check">
-                    <input
-                      id="debit"
-                      name="paymentMethod"
-                      type="radio"
-                      className="form-check-input"
-                      required
-                    />
-                    <label className="form-check-label" htmlFor="debit">
-                      Debit card
-                    </label>
-                  </div>
-                  <div className="form-check">
-                    <input
-                      id="paypal"
-                      name="paymentMethod"
-                      type="radio"
-                      className="form-check-input"
-                      required
-                    />
-                    <label className="form-check-label" htmlFor="paypal">
-                      PayPal
-                    </label>
+
+            <h4 className="mb-3">Payment</h4>
+            <form className="needs-validation" onSubmit={handleCheckout} noValidate>
+              <div className="my-3">
+                <div className="form-check">
+                  <input
+                    id="credit"
+                    name="paymentMethod"
+                    type="radio"
+                    className="form-check-input"
+                    defaultChecked
+                    required
+                  />
+                  <label className="form-check-label" htmlFor="credit">
+                    Credit card
+                  </label>
+                </div>
+                <div className="form-check">
+                  <input
+                    id="debit"
+                    name="paymentMethod"
+                    type="radio"
+                    className="form-check-input"
+                    required
+                  />
+                  <label className="form-check-label" htmlFor="debit">
+                    Debit card
+                  </label>
+                </div>
+                <div className="form-check">
+                  <input
+                    id="paypal"
+                    name="paymentMethod"
+                    type="radio"
+                    className="form-check-input"
+                    required
+                  />
+                  <label className="form-check-label" htmlFor="paypal">
+                    PayPal
+                  </label>
+                </div>
+              </div>
+              <div className="row gy-3 my-4 ">
+              <div className="col-md-6">
+                  <label htmlFor="cc-name" className="form-label">
+                    Name on card
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="cc-name"
+                    placeholder=""
+                    required
+                  />
+                  <small className="text-muted">
+                    Full name as displayed on card
+                  </small>
+                  <div className="invalid-feedback">
+                    Name on card is required.
                   </div>
                 </div>
-                <div className="row gy-3 my-4">
-                  <div className="col-md-6">
-                    <label htmlFor="cc-name" className="form-label">
-                      Name on card
-                    </label>
-                    <input
-                      type="text"
-                      className={`form-control ${
-                        formErrors.ccName ? "is-invalid" : ""
-                      }`}
-                      id="cc-name"
-                      name="ccName"
-                      placeholder=""
-                      required
-                    />
-                    <div className="invalid-feedback">{formErrors.ccName}</div>
-                  </div>
-                  <div className="col-md-6">
-                    <label htmlFor="cc-number" className="form-label">
-                      Credit card number
-                    </label>
-                    <input
-                      type="text"
-                      className={`form-control ${
-                        formErrors.ccNumber ? "is-invalid" : ""
-                      }`}
-                      id="cc-number"
-                      name="ccNumber"
-                      placeholder=""
-                      required
-                    />
-                    <div className="invalid-feedback">
-                      {formErrors.ccNumber}
-                    </div>
-                  </div>
-                  <div className="col-md-3">
-                    <label htmlFor="cc-expiration" className="form-label">
-                      Expiration
-                    </label>
-                    <input
-                      type="text"
-                      className={`form-control ${
-                        formErrors.ccExpiration ? "is-invalid" : ""
-                      }`}
-                      id="cc-expiration"
-                      name="ccExpiration"
-                      placeholder="MM/YYYY"
-                      required
-                    />
-                    <div className="invalid-feedback">
-                      {formErrors.ccExpiration}
-                    </div>
-                  </div>
-                  <div className="col-md-3">
-                    <label htmlFor="cc-cvv" className="form-label">
-                      CVV
-                    </label>
-                    <input
-                      type="text"
-                      className={`form-control ${
-                        formErrors.ccCvv ? "is-invalid" : ""
-                      }`}
-                      id="cc-cvv"
-                      name="ccCvv"
-                      placeholder=""
-                      required
-                    />
-                    <div className="invalid-feedback">{formErrors.ccCvv}</div>
+                <div className="col-md-6">
+                  <label htmlFor="cc-number" className="form-label">
+                    Credit card number
+                  </label>
+                  <input
+                    type="number"
+                    className="form-control"
+                    id="cc-number"
+                    placeholder=""
+                    pattern="\d{12}"
+                    required
+                  />
+                  <div className="invalid-feedback">
+                    Credit card number is required.
                   </div>
                 </div>
-              </form>
-            )}
-            <button
-              className="btn btn-fa btn-danger border-0 rounded-0"
-              type="submit"
-            >
-              Continue to checkout
-            </button>
+                <div className="col-md-3">
+                  <label htmlFor="cc-expiration" className="form-label">
+                    Expiration
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="cc-expiration"
+                    placeholder="MM/YYYY"
+                    pattern="(0[1-9]|1[0-2])\/\d{4}"
+                    required
+                  />
+                  <div className="invalid-feedback">
+                    Expiration date required.
+                  </div>
+                </div>
+                <div className="col-md-3">
+                  <label htmlFor="cc-cvv" className="form-label">
+                    CVV
+                  </label>
+                  <input
+                    type="number"
+                    className="form-control"
+                    id="cc-cvv"
+                    placeholder="CVV"
+                    pattern="\d{3}"
+                    required
+                  />
+                  <div className="invalid-feedback">Security code required.</div>
+                </div>
+              </div>
+             
+              <button className="btn btn-fa btn-danger border-0 rounded-0" type="submit">
+                Continue to checkout
+              </button>
+            </form>
           </div>
 
-          <div className="col-md-5 col-lg-4 order-md-last">
+          <div className="col-md-5 col-lg-4 order-md-last px-0">
             <div className="mb-4">
               <form className="card p-1">
                 <div className="input-group">
@@ -586,4 +410,6 @@ const Checkout = () => {
     </>
   );
 };
+
 export default Checkout;
+
