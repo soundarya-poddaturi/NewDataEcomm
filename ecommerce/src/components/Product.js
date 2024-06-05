@@ -162,9 +162,28 @@ const Product = ({
       if (selectedDiscount !== undefined) {
         if (selectedDiscount.length > 0) {
           filtered = filtered.filter((product) => {
-            const discountPercentage = product.discount_percentage;
+            const discountPercentage = product.discount_percentage || 0; // Ensure discountPercentage is not undefined
             return selectedDiscount.some((range) => {
-              const [minDiscount, maxDiscount] = range.split("-").map(Number);
+              // Remove all % signs and split by -
+              const [minDiscountStr, maxDiscountStr] = range
+                .replace(/%/g, "") // Remove all % signs
+                .split("-")
+                .map(part => part.trim()); // Trim spaces around numbers
+              
+              // Convert to numbers
+              const minDiscount = Number(minDiscountStr);
+              const maxDiscount = Number(maxDiscountStr);
+      
+              // Debugging logs
+              console.log("Range:", range);
+              console.log("Min Discount:", minDiscount);
+              console.log("Max Discount:", maxDiscount);
+      
+              // Check if maxDiscount is NaN and handle appropriately
+              if (isNaN(maxDiscount)) {
+                return discountPercentage >= minDiscount;
+              }
+              
               return (
                 discountPercentage >= minDiscount &&
                 discountPercentage <= maxDiscount
@@ -173,6 +192,7 @@ const Product = ({
           });
         }
       }
+      
       setCurrentPage(1);
       setFilteredProducts(filtered);
     };

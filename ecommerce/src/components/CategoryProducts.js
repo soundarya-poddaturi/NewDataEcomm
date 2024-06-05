@@ -94,12 +94,12 @@ const [showTypeFilter, setShowTypeFilter] = useState(false);
   
 
   const [discountRanges, setDiscountRanges] = useState([
-    "0-10",
-    "11-20",
-    "21-30",
-    "31-40",
-    "41-50",
-    "51-60",
+    "0% - 10%",
+    "11% - 20%",
+    "21% - 30%",
+    "31% - 40%",
+    "41% - 50%",
+    "51% - 60%",
   ]);
   const [selectedDiscountRanges, setSelectedDiscountRanges] = useState([]);
 

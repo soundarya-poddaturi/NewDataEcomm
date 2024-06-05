@@ -28,7 +28,7 @@ const Categories = () => {
   };
 
   return (
-    <ScrollComponent threshold={0.4} className="my-scroll-component">
+    // <ScrollComponent threshold={0.4} className="my-scroll-component">
     <div className="container mt-5 mb-5">
       <div className="row">
         {categories.map((category, index) => (
@@ -53,7 +53,7 @@ const Categories = () => {
         ))}
       </div>
     </div>
-     </ScrollComponent>
+    //  </ScrollComponent>
   );
 };
 

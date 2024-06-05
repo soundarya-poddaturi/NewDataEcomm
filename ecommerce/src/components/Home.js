@@ -126,11 +126,11 @@ const Home = () => {
         <div className="mb-5"><CountDown /></div>
          
           
-        <ScrollComponent threshold={0.1} className="my-scroll-component">
+        {/* <ScrollComponent threshold={0.1} className="my-scroll-component"> */}
         <h2 className="my-4 fs-1 d-flex justify-content-center">
           Top Categories
         </h2>
-      </ScrollComponent>
+      {/* </ScrollComponent> */}
            
          
         
@@ -138,9 +138,9 @@ const Home = () => {
           <Categories/>
 
         </div>
-        <ScrollComponent threshold={0.1} className="my-scroll-component">
+        {/* <ScrollComponent threshold={0.1} className="my-scroll-component"> */}
         <HomeCat />
-        </ScrollComponent>
+        {/* </ScrollComponent> */}
         {/* <div className="container">
           <div className="row">
             <h2 className="text-center mb-3 mt-3">CATEGORIES</h2>
@@ -154,9 +154,9 @@ const Home = () => {
 
        
        
-        <ScrollComponent threshold={0.1} className="my-scroll-component">
+        {/* <ScrollComponent threshold={0.1} className="my-scroll-component"> */}
         <AboutSection />
-        </ScrollComponent>
+        {/* </ScrollComponent> */}
         <Delivery />
       </div>
     </div>
