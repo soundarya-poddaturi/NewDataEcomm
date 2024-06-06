@@ -25,6 +25,7 @@ const OrderDetails = () => {
             ...userStoredOrders.reverse(),
             ...fetchedOrders,
           ];
+          console.log(mergedOrders);
           setOrders(mergedOrders);
         })
         .catch((error) => {
@@ -108,9 +109,9 @@ const OrderDetails = () => {
                     <p className="mb-lg-0 fs-sm text-capitalize">
                       {order.address ? (
                         <>
-                          {order.address.addressValue},{" "}
-                          {order.address.countryValue},{" "}
-                          {order.address.stateValue}, {order.address.zipValue}
+                          {order.address.city},{" "}
+                          {order.address.state},{" "}{order.address.countryValue},
+                          {order.address.zipcode}
                         </>
                       ) : (
                         <>

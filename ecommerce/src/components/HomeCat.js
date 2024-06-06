@@ -6,6 +6,7 @@ function HomeCat() {
   const navigate = useNavigate();
 
   const handleRedirectToSearch = (searchTerm) => {
+    scrollToTop();
     navigate(`/search/${searchTerm}`);
   };
 

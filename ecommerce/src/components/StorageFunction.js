@@ -88,6 +88,7 @@ export const updateStorageItemSize = (key, userId, itemId, newSize) => {
 
 export const storeOrderLocally = (userId, items, totalAmount, promoCode, calculatedDeliveryFee, subtotal, promoCodes,address) => {
   const orders = JSON.parse(localStorage.getItem("orders")) || {};
+  console.log(address);
   const orderNumber = generateOrderNumber(); // Generate a random order number
   // const promoCodes = useSelector((state) => state.delivery.promoCodes);
   const discountPercentage = promoCodes[promoCode];

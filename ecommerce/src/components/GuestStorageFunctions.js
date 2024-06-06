@@ -1,18 +1,18 @@
-export const addToGuestCart = (product, quantity = 1) => {
-    let guestCartItems = JSON.parse(localStorage.getItem("guestCartItems")) || [];
-    const existingIndex = guestCartItems.findIndex(item => item.id === product.id);
-  
-    if (existingIndex !== -1) {
-   
-      guestCartItems[existingIndex].quantity += quantity;
-    } else {
-    
-      const productWithQuantity = { ...product, quantity };
+export const addToGuestCart = (product) => {
+  let guestCartItems = JSON.parse(localStorage.getItem("guestCartItems")) || [];
+  const existingIndex = guestCartItems.findIndex(item => item.id === product.id && item.selectedSize === product.selectedSize);
+  console.log(product.selectedSize);
+  const nqty = product.quantity; // Assuming product.quantity holds the quantity to add
+  if (existingIndex !== -1) {
+      guestCartItems[existingIndex].quantity += nqty;
+  } else {
+      // If the product with the same id and selected size doesn't exist, add it as a new item
+      const productWithQuantity = { ...product, quantity: nqty }; // Use the correct property name: quantity
       guestCartItems.push(productWithQuantity);
-    }
-  
-    localStorage.setItem("guestCartItems", JSON.stringify(guestCartItems));
-  };
+  }
+  localStorage.setItem("guestCartItems", JSON.stringify(guestCartItems));
+};
+
   export const updateGuestCartItemQuantity = (itemId, newQuantity) => {
     let guestCartItems = JSON.parse(localStorage.getItem("guestCartItems")) || [];
     const existingIndex = guestCartItems.findIndex(item => item.id === itemId);

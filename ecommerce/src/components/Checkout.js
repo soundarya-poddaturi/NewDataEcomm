@@ -25,6 +25,13 @@ const Checkout = () => {
   const [stateValue, setStateValue] = useState("");
   const [zipValue, setZipValue] = useState("");
   const [wasValidated,setWasValidated]=useState(false)
+  const [ccNumberValid, setCcNumberValid] = useState(true); // State to track credit card number validity
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate('/login'); // Redirect to login page if user is not authenticated
+    }
+  }, [isAuthenticated, navigate]);
   let items = [];
   if (checkoutItems) {
     items = checkoutItems;
@@ -52,6 +59,7 @@ const Checkout = () => {
         if (userId) {
           const response = await fetch(`http://localhost:5000/users/${userId}`);
           const userData = await response.json();
+          console.log(userData.address);
           setUserAddress(userData.address);
         }
       } catch (error) {
@@ -63,7 +71,7 @@ const Checkout = () => {
       fetchUserAddress();
     }
   }, [isAuthenticated, userId]);
-
+  const [ccNumber1, setCcNumber] = useState("");
   const handleCheckout = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -102,6 +110,25 @@ const Checkout = () => {
       const promoCodeDiscount = (subtotal * discountPercentage) / 100;
       total -= promoCodeDiscount;
     }
+    let addressToStore;
+
+  // Check if the user has entered a new address
+  if (showAddressForm) {
+    console.log("fff");
+    // If a new address is entered during checkout, use it
+    addressToStore = {
+      city:addressValue+" "+countryValue,
+      state:stateValue,
+      zipcode:zipValue,
+      
+    };
+    console.log(addressToStore);
+  } else {
+    // Otherwise, use the user's default address
+    addressToStore = userAddress;
+  }
+  console.log(addressToStore);
+
 
     if (checkoutItems === undefined) {
       dispatch(clearCart());
@@ -109,12 +136,7 @@ const Checkout = () => {
         deleteStorageCartItem("cartItems", userId, item.id);
       });
     }
-    const address = {
-      addressValue,
-      countryValue,
-      stateValue,
-      zipValue,
-    };
+    
 
     storeOrderLocally(
       userId,
@@ -124,7 +146,7 @@ const Checkout = () => {
       calculatedDeliveryFee,
       subtotal,
       promoCode,
-      address
+      addressToStore
     );
     dispatch(clearPromoCode());
     setPromoCode("");
@@ -153,6 +175,21 @@ const Checkout = () => {
     console.log('Address fields are valid');
     return true;
   };
+  const handleCcNumberChange = (e) => {
+    const inputValue = e.target.value;
+    console.log(ccNumber1);
+    setCcNumber(inputValue); // Update the credit card number state
+  
+    // Check if the length of the input value is 3 digits
+    if (/^\d{3}$/.test(inputValue)) {
+      // If the length is 3 digits, mark the CVV as valid
+      setCcNumberValid(true);
+    } else {
+      // If the length is not 3 digits, mark the CVV as invalid
+      setCcNumberValid(false);
+    }
+  };
+  
 
   return (
     <>
@@ -425,8 +462,13 @@ const Checkout = () => {
                     placeholder="CVV"
                     pattern="\d{3}"
                     required
+                    value={ccNumber1}
+                    onChange={handleCcNumberChange}
                   />
-                  <div className="invalid-feedback">
+                   {!ccNumberValid && (
+                      <div className="invalid-feedback">Only 3 digits allowed.</div>
+                    )}
+        <div className="invalid-feedback">
                     Security code required.
                   </div>
                 </div>

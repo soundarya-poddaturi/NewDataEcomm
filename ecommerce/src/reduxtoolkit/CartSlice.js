@@ -12,11 +12,11 @@ const cartSlice = createSlice({
     initialState,
     reducers: {
         addItem(state, action) {
-            console.log("in cartslice")
+          
             const { product, quantity } = action.payload;
             console.log(product);
             console.log(quantity)
-            const existingProductIndex = state.items.findIndex(item => item.id === product.id);
+            const existingProductIndex = state.items.findIndex(item => item.id === product.id && item.selectedSize===product.selectedSize);
             if (existingProductIndex !== -1) {
                 state.items[existingProductIndex].quantity += quantity;
             } else {
@@ -60,7 +60,7 @@ const cartSlice = createSlice({
                     return; 
                 }
                 
-                const existingProductIndex = state.items.findIndex(cartItem => cartItem.id === item.id);
+                const existingProductIndex = state.items.findIndex(cartItem => cartItem.id === item.id && cartItem.selectedSize===item.id);
                 if (existingProductIndex !== -1) {
                     state.items[existingProductIndex].quantity += item.quantity || 1;
                 } else {

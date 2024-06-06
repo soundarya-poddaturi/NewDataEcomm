@@ -2,6 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Confirmation = () => {
+    const scrollToTop = () => {
+        window.scrollTo(0, 0);
+      };
     return (
         <section className="py-12">
             <div className="container">
@@ -20,7 +23,7 @@ const Confirmation = () => {
                         </p>
 
                         {/* Button */}
-                        <Link to="/profile" className="btn btn-dark">View My Orders</Link>
+                        <Link to="/profile" className="btn btn-dark" onClick={scrollToTop}>View My Orders</Link>
                     </div>
                 </div>
             </div>

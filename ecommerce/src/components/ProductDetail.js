@@ -47,6 +47,7 @@ const ProductDetail = () => {
   const handleCart = () => {
     if (!checkSize()) return;
     if (!auth.isAuthenticated) {
+      console.log(quantity);
       addToGuestCart({ ...product, selectedSize, quantity });
     }
 
