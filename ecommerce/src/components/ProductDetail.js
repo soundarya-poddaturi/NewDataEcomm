@@ -43,6 +43,9 @@ const ProductDetail = () => {
 
     fetchProduct();
   }, [id]);
+  const scrollToTop = () => {
+    window.scrollTo(0, 0);
+  };
 
   const handleCart = () => {
     if (!checkSize()) return;
@@ -50,13 +53,15 @@ const ProductDetail = () => {
       console.log(quantity);
       addToGuestCart({ ...product, selectedSize, quantity });
     }
-
+   
+    
     if (cartBtn === "Add to Cart") {
       dispatch(addItem({ product: { ...product, selectedSize }, quantity }));
       const userId = auth.user?.id;
       addToStorageCart({ ...product, selectedSize }, userId, quantity);
       setCartBtn("Move To Cart");
     } else {
+      scrollToTop();
       navigate("/cart");
     }
   };

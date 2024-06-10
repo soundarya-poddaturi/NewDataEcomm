@@ -36,12 +36,16 @@ const Cart = () => {
     setShowLoginModal(true);
   };
 
-  const handleClose = (itemId) => {
+  const handleClose = (itemId,selectedSize) => {
     console.log("deleting....");
-    dispatch(delItem(itemId));
-    deleteStorageCartItem("cartItems", userId, itemId);
+    console.log(itemId,selectedSize);
+    dispatch(delItem({itemId,selectedSize}));
+   
     if (!isAuthenticated) {
-      deleteGuestCartItem(itemId);
+      deleteGuestCartItem(itemId,selectedSize);
+    }
+    else{
+      deleteStorageCartItem("cartItems", userId, itemId,selectedSize);
     }
   };
 
@@ -49,12 +53,12 @@ const Cart = () => {
     window.scrollTo(0, 0);
   };
 
-  const handleQuantityChange = (itemId, newQuantity) => {
+  const handleQuantityChange = (itemId, newQuantity,selectedSize) => {
     if (newQuantity < 1) return;
-    dispatch(updateQuantity({ id: itemId, quantity: newQuantity }));
-    updateStorageItemQuantity("cartItems", userId, itemId, newQuantity);
+    dispatch(updateQuantity({ id: itemId, quantity: newQuantity ,selectedSize:selectedSize}));
+    updateStorageItemQuantity("cartItems", userId, itemId, newQuantity,selectedSize);
     if (!isAuthenticated) {
-      updateGuestCartItemQuantity(itemId, newQuantity);
+      updateGuestCartItemQuantity(itemId, newQuantity,selectedSize);
     }
   };
 
@@ -106,7 +110,7 @@ const Cart = () => {
             <div className="mt-3">
               <p className="lead">${cartItem.price}</p>
               <p className="lead fw-bold">
-                SubTotal: ${cartItem.price * cartItem.quantity}
+                SubTotal: ${(cartItem.price * cartItem.quantity).toFixed(2)}
               </p>
             </div>
             <div className="centering d-flex justify-content-around justify-content-lg-start">
@@ -137,7 +141,7 @@ const Cart = () => {
                 <div
                   className="btn btn-items btn-items-decrease"
                   onClick={() =>
-                    handleQuantityChange(cartItem.id, cartItem.quantity - 1)
+                    handleQuantityChange(cartItem.id, cartItem.quantity - 1,cartItem.selectedSize)
                   }
                 >
                   -
@@ -151,7 +155,7 @@ const Cart = () => {
                 <div
                   className="btn btn-items btn-items-increase"
                   onClick={() =>
-                    handleQuantityChange(cartItem.id, cartItem.quantity + 1)
+                    handleQuantityChange(cartItem.id, cartItem.quantity + 1,cartItem.selectedSize)
                   }
                 >
                   +
@@ -160,7 +164,7 @@ const Cart = () => {
             </div>
             <button
               className="btn btn-danger rounded-0 mx-auto"
-              onClick={() => handleClose(cartItem.id)}
+              onClick={() => handleClose(cartItem.id,cartItem.selectedSize)}
             >
               Remove from bag
             </button>

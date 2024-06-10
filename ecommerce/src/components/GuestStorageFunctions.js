@@ -13,18 +13,18 @@ export const addToGuestCart = (product) => {
   localStorage.setItem("guestCartItems", JSON.stringify(guestCartItems));
 };
 
-  export const updateGuestCartItemQuantity = (itemId, newQuantity) => {
-    let guestCartItems = JSON.parse(localStorage.getItem("guestCartItems")) || [];
-    const existingIndex = guestCartItems.findIndex(item => item.id === itemId);
-  
-    if (existingIndex !== -1) {
-     
+export const updateGuestCartItemQuantity = (itemId, newQuantity, selectedSize) => {
+  let guestCartItems = JSON.parse(localStorage.getItem("guestCartItems")) || [];
+  const existingIndex = guestCartItems.findIndex(item => item.id === itemId && item.selectedSize === selectedSize);
+
+  if (existingIndex !== -1) {
       guestCartItems[existingIndex].quantity = newQuantity;
       localStorage.setItem("guestCartItems", JSON.stringify(guestCartItems));
-    } else {
+  } else {
       console.error("Product not found in guest cart.");
-    }
-  };
+  }
+};
+
   export const updateGuestCartItemSize = (itemId, newSize) => {
     const guestCartItems = JSON.parse(localStorage.getItem("guestCartItems")) || [];
     const index = guestCartItems.findIndex(item => item.id === itemId);
@@ -37,11 +37,14 @@ export const addToGuestCart = (product) => {
   
 
   
-  export const deleteGuestCartItem = (itemId) => {
+  export const deleteGuestCartItem = (itemId, selectedSize) => {
+   
     let guestCartItems = JSON.parse(localStorage.getItem("guestCartItems")) || [];
-    const updatedCartItems = guestCartItems.filter(item => item.id !== itemId);
+    const updatedCartItems = guestCartItems.filter(item => !(item.id === itemId && item.selectedSize === selectedSize));
+
     localStorage.setItem("guestCartItems", JSON.stringify(updatedCartItems));
-  };
+};
+
 
   
 

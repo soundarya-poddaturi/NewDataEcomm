@@ -6,7 +6,7 @@ export const addToStorageCart = (product, userId, QUANTITY = 1) => {
   if (!cartData[userId]) {
     cartData[userId] = [];
   }
-  const existingProductIndex = cartData[userId].findIndex(item => item.id === product.id);
+  const existingProductIndex = cartData[userId].findIndex(item => item.id === product.id && item.selectedSize===product.selectedSize);
 
   if (existingProductIndex !== -1) {
     cartData[userId][existingProductIndex].quantity += QUANTITY;
@@ -17,16 +17,19 @@ export const addToStorageCart = (product, userId, QUANTITY = 1) => {
   localStorage.setItem("cartItems", JSON.stringify(cartData));
 };
 
-  export const deleteStorageCartItem = (key, userId, itemId) => {
-    const currentItems = JSON.parse(localStorage.getItem(key)) || {};
-    const userItems = currentItems[userId] || [];
-    const index = userItems.findIndex(storageItem => storageItem.id === itemId);
-        if (index !== -1) {
+export const deleteStorageCartItem = (key, userId, itemId, selectedSize) => {
+  const currentItems = JSON.parse(localStorage.getItem(key)) || {};
+  const userItems = currentItems[userId] || [];
+  console.log(selectedSize);
+  const index = userItems.findIndex(storageItem => storageItem.id === itemId && storageItem.selectedSize === selectedSize);
+  console.log(index);
+  if (index !== -1) {
       userItems.splice(index, 1);
       currentItems[userId] = userItems;
       localStorage.setItem(key, JSON.stringify(currentItems));
-    }
-  };
+  }
+};
+
   export const addToStorageWishlist = (item, userId, quantity = 1) => {
     console.log(item);
     console.log(userId)
@@ -62,17 +65,18 @@ export const addToStorageCart = (product, userId, QUANTITY = 1) => {
 };
 
 
-export const updateStorageItemQuantity = (key, userId, itemId, newQuantity) => {
-  console.log(userId+" "+itemId+" "+newQuantity)
-    const currentItems = JSON.parse(localStorage.getItem(key)) || {};
-    const userItems = currentItems[userId] || [];
-     const index = userItems.findIndex(storageItem => storageItem.id === itemId);
-    if (index !== -1) {
-      userItems[index].quantity = newQuantity;
-      currentItems[userId] = userItems;
-      localStorage.setItem(key, JSON.stringify(currentItems));
-    }
+export const updateStorageItemQuantity = (key, userId, itemId, newQuantity, selectedSize) => {
+  console.log(userId + " " + itemId + " " + newQuantity + " " + selectedSize);
+  const currentItems = JSON.parse(localStorage.getItem(key)) || {};
+  const userItems = currentItems[userId] || [];
+  const index = userItems.findIndex(storageItem => storageItem.id === itemId && storageItem.selectedSize === selectedSize);
+  if (index !== -1) {
+    userItems[index].quantity = newQuantity;
+    currentItems[userId] = userItems;
+    localStorage.setItem(key, JSON.stringify(currentItems));
+  }
 };
+
 
 
 export const updateStorageItemSize = (key, userId, itemId, newSize) => {
@@ -92,6 +96,7 @@ export const storeOrderLocally = (userId, items, totalAmount, promoCode, calcula
   const orderNumber = generateOrderNumber(); // Generate a random order number
   // const promoCodes = useSelector((state) => state.delivery.promoCodes);
   const discountPercentage = promoCodes[promoCode];
+  console.log(discountPercentage);
   const newOrder = {
     id: orderNumber,
     userId: userId,
@@ -101,6 +106,7 @@ export const storeOrderLocally = (userId, items, totalAmount, promoCode, calcula
       quantity: item.quantity,
       selectedSize: item.selectedSize,
     })),
+   
     totalAmount: totalAmount,
     promoCodeDiscountPercentage: discountPercentage,
     promoCode: promoCode, // Include promo code in the order details

@@ -109,9 +109,27 @@ const OrderDetails = () => {
                     <p className="mb-lg-0 fs-sm text-capitalize">
                       {order.address ? (
                         <>
-                          {order.address.city},{" "}
-                          {order.address.state},{" "}{order.address.countryValue},
-                          {order.address.zipcode}
+                         {
+                              order.address.city &&
+                              <span>{order.address.city}, </span>
+                          }
+                          {
+                              order.address.state &&
+                              <span>{order.address.state}, </span>
+                          }
+                          {
+                              order.address.countryValue &&
+                              <span>{order.address.countryValue}, </span>
+                          }
+                          {
+                              order.address.street &&
+                              <span>{order.address.street} </span>
+                          }
+                          {
+                              order.address.zipcode &&
+                              <span>{order.address.zipcode}</span>
+                          }
+
                         </>
                       ) : (
                         <>

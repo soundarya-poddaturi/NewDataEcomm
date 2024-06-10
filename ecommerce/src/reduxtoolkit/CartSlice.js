@@ -26,19 +26,22 @@ const cartSlice = createSlice({
             state.total = state.subtotal; 
         },
         delItem(state, action) {
-            state.items = state.items.filter((item) => item.id !== action.payload);
+            const { itemId, selectedSize } = action.payload;
+            console.log(itemId, selectedSize);
+            state.items = state.items.filter(item => !(item.id === itemId && item.selectedSize === selectedSize));
             state.subtotal = calculateTotal(state.items);
             state.total = state.subtotal; 
         },
         updateQuantity(state, action) {
-            const { id, quantity } = action.payload;
-            const itemToUpdate = state.items.find(item => item.id === id);
+            const { id, quantity, selectedSize } = action.payload;
+            const itemToUpdate = state.items.find(item => item.id === id && item.selectedSize === selectedSize);
             if (itemToUpdate) {
                 itemToUpdate.quantity = quantity;
                 state.subtotal = calculateTotal(state.items);
                 state.total = state.subtotal;
             }
         },
+        
         updateSize(state, action) {
             const { id, size } = action.payload;
             const itemToUpdate = state.items.find(item => item.id === id);
@@ -54,13 +57,11 @@ const cartSlice = createSlice({
         },
         addToCart(state, action) {
             const itemsToAdd = Array.isArray(action.payload) ? action.payload : [action.payload];
-            console.log(itemsToAdd);
             itemsToAdd.forEach(item => {
                 if (Object.keys(item).length === 0) {
-                    return; 
+                    return;
                 }
-                
-                const existingProductIndex = state.items.findIndex(cartItem => cartItem.id === item.id && cartItem.selectedSize===item.id);
+                const existingProductIndex = state.items.findIndex(cartItem => cartItem.id === item.id && cartItem.selectedSize === item.selectedSize);
                 if (existingProductIndex !== -1) {
                     state.items[existingProductIndex].quantity += item.quantity || 1;
                 } else {
